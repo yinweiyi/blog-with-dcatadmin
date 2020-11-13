@@ -1,19 +1,17 @@
 <?php
+
 namespace App\Providers;
 
+use App\Http\View\Composers\ConfigsComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
-class ViewServiceProvider extends ServiceProvider{
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+class ViewServiceProvider extends ServiceProvider
+{
+
+    protected $composers = [
+        ConfigsComposer::class => ['layouts.footer', 'master'],
+    ];
 
     /**
      * Bootstrap any application services.
@@ -22,14 +20,8 @@ class ViewServiceProvider extends ServiceProvider{
      */
     public function boot()
     {
-        // Using class based composers...
-        View::composer(
-            'profile', 'App\Http\View\Composers\ProfileComposer'
-        );
-
-        // Using Closure based composers...
-        View::composer('dashboard', function ($view) {
-            //
-        });
+        foreach ($this->composers as $class => $views) {
+            View::composer($views, $class);
+        }
     }
 }
