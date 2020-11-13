@@ -8,7 +8,7 @@
     <meta name="baidu-site-verification" content="BHraSigcd3">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="{{ $configs['author'] ?? '' }}">
-    <title>@yield('title', '忆未乙个人博客') | 技术博客</title>
+    <title>@yield('title', $configs['title'] ?? '') | 技术博客</title>
     <meta name="keywords" content="{{ $configs['keywords'] ?? '' }}">
     <meta name="description" content="{{ $configs['description'] ?? '' }}">
     <link href="{{ asset('css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
