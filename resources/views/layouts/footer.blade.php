@@ -5,7 +5,7 @@
         </li>
     </ul>
     <p> Copyright © 2010-2020
-        <a href="https://www.ewayee.com/">忆未乙个人博客</a>
-        <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">蜀ICP备2020032284号-1</a>
+        <a href="https://www.ewayee.com/">{{ $configs['title'] ?? '' }}</a>
+        <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">{{ $configs['icp'] ?? '' }}</a>
     </p>
 </footer>

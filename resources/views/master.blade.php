@@ -7,10 +7,10 @@
           content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="baidu-site-verification" content="BHraSigcd3">
     <link rel="icon" href="/favicon.ico">
-    <meta name="author" content="{{ $configs->author }}">
+    <meta name="author" content="{{ $configs['author'] ?? '' }}">
     <title>@yield('title', '忆未乙个人博客') | 技术博客</title>
-    <meta name="keywords" content="{{ $configs->keywords }}">
-    <meta name="description" content="忆未乙的技术博客，记录工作学习过程中遇到问题经验。这是忆未乙技术博客的原创博文">
+    <meta name="keywords" content="{{ $configs['keywords'] ?? '' }}">
+    <meta name="description" content="{{ $configs['description'] ?? '' }}">
     <link href="{{ asset('css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     @yield('css')
@@ -27,6 +27,7 @@
 <div class="container main">
     @yield('container')
 </div>
+@include('layouts.footer')
 
 <script src="{{ asset('jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
