@@ -26,6 +26,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedInteger('order')->unsigned()->default(0)->comment('排序');
             $table->timestamps();
             $table->softDeletes();
+            $table->index(['views']);
         });
     }
 
