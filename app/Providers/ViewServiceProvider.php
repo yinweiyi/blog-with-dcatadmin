@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\View\Composers\ConfigsComposer;
+use App\Http\View\Composers\TagsComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -11,6 +12,7 @@ class ViewServiceProvider extends ServiceProvider
 
     protected $composers = [
         ConfigsComposer::class => ['layouts.footer', 'layouts.nav', 'master'],
+        TagsComposer::class    => ['layouts.footer', 'layouts.tags'],
     ];
 
     /**

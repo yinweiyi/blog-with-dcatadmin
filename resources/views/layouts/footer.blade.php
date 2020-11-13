@@ -1,8 +1,10 @@
 <footer class="footer">
     <ul class="list-inline">
-        <li class="cat-item cat-item-342">
-            <a href="https://www.ewayee.com/category/c-program" title="c语言学习,c语言程序设计基础入门">C/C++</a>
-        </li>
+        @foreach($tags as $tag)
+            <li class="cat-item cat-item-342">
+                <a href="#" title="{{ $tag }}">{{ $tag }}</a>
+            </li>
+        @endforeach
     </ul>
     <p> Copyright © 2010-2020
         <a href="https://www.ewayee.com/">{{ $configs['title'] ?? '' }}</a>
