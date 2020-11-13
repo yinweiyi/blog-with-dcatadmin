@@ -150,9 +150,9 @@ if (!function_exists('request_info')) {
 
         return app('log')->info($message, [
             'context' => $context,
-            'input' => $request->except(['password', 'password_confirmation']),
+            'input'   => $request->except(['password', 'password_confirmation']),
             'referer' => $request->server('HTTP_REFERER'),
-            'ua' => $request->server('HTTP_USER_AGENT'),
+            'ua'      => $request->server('HTTP_USER_AGENT'),
         ]);
     }
 }
@@ -464,4 +464,20 @@ if (!function_exists('array_insert')) {
         return array_merge($fore, $array);
     }
 }
+if (!function_exists('random_color')) {
+    /**
+     * 随机颜色
+     *
+     * @return string
+     */
+    function random_color()
+    {
+        $colors = array();
+        for ($i = 0; $i < 6; $i++) {
+            $colors[] = dechex(rand(0, 15));
+        }
+        return '#' . implode('', $colors);
+    }
+}
+
 

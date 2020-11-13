@@ -18,5 +18,6 @@ Route::group([
     $router->resource('/configs', 'ConfigController');
     $router->resource('/friendship-links', 'FriendshipLinkController');
     $router->resource('/sentences', 'SentenceController');
+    $router->resource('/categories', 'CategoryController');
     $router->resource('/tags', 'TagController');
 });

@@ -19,17 +19,18 @@ class FriendshipLinkController extends AdminController
     {
         return Grid::make(new FriendshipLink(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('description');
-            $grid->column('is_enable');
             $grid->column('link');
             $grid->column('title');
+            $grid->column('is_enable')->switch();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+                $filter->like('title');
             });
+
+            $grid->disableViewButton();
         });
     }
 
@@ -62,11 +63,11 @@ class FriendshipLinkController extends AdminController
     {
         return Form::make(new FriendshipLink(), function (Form $form) {
             $form->display('id');
+            $form->radio('is_enable')->options([0 => '否', 1 => '是'])->default(1);
+            $form->text('title')->required();
+            $form->url('link')->required();
             $form->text('description');
-            $form->text('is_enable');
-            $form->text('link');
-            $form->text('title');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });

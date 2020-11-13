@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Http\View\Composers;
+namespace App\Http\ViewComposers;
 
-use App\Models\Config;
+use App\Models\Category;
 use Illuminate\View\View;
 
-class ConfigsComposer
+class CategoriesComposer
 {
     /**
      * Bind data to the view.
@@ -16,6 +16,6 @@ class ConfigsComposer
      */
     public function compose(View $view)
     {
-        $view->with('configs', Config::all()->pluck('value', 'name')->toArray());
+        $view->with('categories', Category::query()->orderBy('order')->pluck('name', 'id'));
     }
 }

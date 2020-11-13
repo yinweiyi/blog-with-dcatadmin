@@ -24,9 +24,11 @@ class CreateArticlesTable extends Migration
             $table->unsignedTinyInteger('is_top')->default(0)->comment('是否置顶 1是 0否');
             $table->unsignedInteger('views')->unsigned()->default(0)->comment('浏览量');
             $table->unsignedInteger('order')->unsigned()->default(0)->comment('排序');
+            $table->unsignedInteger('category_id')->unsigned()->default(0)->comment('分类ID');
             $table->timestamps();
             $table->softDeletes();
-            $table->index(['views']);
+            $table->index('views');
+            $table->index('category_id');
         });
     }
 

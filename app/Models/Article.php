@@ -5,6 +5,7 @@ namespace App\Models;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Article extends Model
 {
@@ -22,5 +23,27 @@ class Article extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * 关联分类
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * to html
+     *
+     * @return string
+     */
+    public function stripTagHtml()
+    {
+        $stripTagsHtml = strip_tags($this->attributes['html']);
+
+        return Str::limit($stripTagsHtml, 415);
     }
 }

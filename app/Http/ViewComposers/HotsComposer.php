@@ -1,11 +1,12 @@
 <?php
 
 
-namespace App\Http\View\Composers;
+namespace App\Http\ViewComposers;
 
+use App\Models\Article;
 use Illuminate\View\View;
 
-class NewCommentsComposer
+class HotsComposer
 {
     /**
      * Bind data to the view.
@@ -15,6 +16,6 @@ class NewCommentsComposer
      */
     public function compose(View $view)
     {
-        $view->with('newComments', []);
+        $view->with('hots', Article::query()->orderByDesc('views')->select(['id', 'title'])->get());
     }
 }

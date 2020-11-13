@@ -45,6 +45,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection article_id
      * @property Grid\Column|Collection tag_id
      * @property Grid\Column|Collection author
+     * @property Grid\Column|Collection category_id
      * @property Grid\Column|Collection deleted_at
      * @property Grid\Column|Collection is_top
      * @property Grid\Column|Collection keywords
@@ -56,6 +57,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection is_audited
      * @property Grid\Column|Collection nickname
+     * @property Grid\Column|Collection top_id
      * @property Grid\Column|Collection value
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection exception
@@ -103,6 +105,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection article_id(string $label = null)
      * @method Grid\Column|Collection tag_id(string $label = null)
      * @method Grid\Column|Collection author(string $label = null)
+     * @method Grid\Column|Collection category_id(string $label = null)
      * @method Grid\Column|Collection deleted_at(string $label = null)
      * @method Grid\Column|Collection is_top(string $label = null)
      * @method Grid\Column|Collection keywords(string $label = null)
@@ -114,6 +117,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection is_audited(string $label = null)
      * @method Grid\Column|Collection nickname(string $label = null)
+     * @method Grid\Column|Collection top_id(string $label = null)
      * @method Grid\Column|Collection value(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
@@ -166,6 +170,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection article_id
      * @property Show\Field|Collection tag_id
      * @property Show\Field|Collection author
+     * @property Show\Field|Collection category_id
      * @property Show\Field|Collection deleted_at
      * @property Show\Field|Collection is_top
      * @property Show\Field|Collection keywords
@@ -177,6 +182,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection email
      * @property Show\Field|Collection is_audited
      * @property Show\Field|Collection nickname
+     * @property Show\Field|Collection top_id
      * @property Show\Field|Collection value
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection exception
@@ -224,6 +230,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection article_id(string $label = null)
      * @method Show\Field|Collection tag_id(string $label = null)
      * @method Show\Field|Collection author(string $label = null)
+     * @method Show\Field|Collection category_id(string $label = null)
      * @method Show\Field|Collection deleted_at(string $label = null)
      * @method Show\Field|Collection is_top(string $label = null)
      * @method Show\Field|Collection keywords(string $label = null)
@@ -235,6 +242,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection is_audited(string $label = null)
      * @method Show\Field|Collection nickname(string $label = null)
+     * @method Show\Field|Collection top_id(string $label = null)
      * @method Show\Field|Collection value(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)

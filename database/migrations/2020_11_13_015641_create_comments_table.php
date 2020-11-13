@@ -22,9 +22,11 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('commentable_id')->default(0)->comment('关联ID');
             $table->string('commentable_type', 100)->default('')->comment('关联表类型');
             $table->unsignedTinyInteger('is_audited')->default(0)->comment('是否已审核');
+            $table->unsignedTinyInteger('top_id')->default(0)->comment('顶级ID');
             $table->timestamps();
             $table->softDeletes();
             $table->index('parent_id');
+            $table->index('top_id');
             $table->index(['commentable_id', 'commentable_type']);
         });
     }

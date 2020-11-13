@@ -1,12 +1,11 @@
 <?php
 
 
-namespace App\Http\View\Composers;
+namespace App\Http\ViewComposers;
 
-use App\Models\Tag;
 use Illuminate\View\View;
 
-class TagsComposer
+class NewCommentsComposer
 {
     /**
      * Bind data to the view.
@@ -16,6 +15,6 @@ class TagsComposer
      */
     public function compose(View $view)
     {
-        $view->with('tags', Tag::query()->orderBy('order')->pluck('name'));
+        $view->with('newComments', collect());
     }
 }

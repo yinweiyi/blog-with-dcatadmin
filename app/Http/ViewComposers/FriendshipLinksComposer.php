@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\View\Composers;
+namespace App\Http\ViewComposers;
 
 use App\Models\FriendshipLink;
 use Illuminate\View\View;
@@ -16,6 +16,7 @@ class FriendshipLinksComposer
      */
     public function compose(View $view)
     {
-        $view->with('links', FriendshipLink::query()->where('is_enable', 1)->orderByDesc('id')->select(['title', 'link'])->get());
+        $friendshipLinks = FriendshipLink::query()->where('is_enable', 1)->orderByDesc('id')->select(['title', 'link'])->get()->chunk(2);
+        $view->with('friendshipLinks', $friendshipLinks);
     }
 }

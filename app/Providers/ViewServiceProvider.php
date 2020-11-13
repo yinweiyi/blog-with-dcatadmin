@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
-use App\Http\View\Composers\ConfigsComposer;
-use App\Http\View\Composers\TagsComposer;
+use App\Http\ViewComposers\CategoriesComposer;
+use App\Http\ViewComposers\ConfigsComposer;
+use App\Http\ViewComposers\FriendshipLinksComposer;
+use App\Http\ViewComposers\HotsComposer;
+use App\Http\ViewComposers\NewCommentsComposer;
+use App\Http\ViewComposers\TagsComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -11,8 +15,12 @@ class ViewServiceProvider extends ServiceProvider
 {
 
     protected $composers = [
-        ConfigsComposer::class => ['layouts.footer', 'layouts.nav', 'master'],
-        TagsComposer::class    => ['layouts.footer', 'layouts.tags'],
+        ConfigsComposer::class         => ['layouts.footer', 'layouts.nav', 'master'],
+        TagsComposer::class            => 'layouts.tags',
+        CategoriesComposer::class      => 'layouts.footer',
+        HotsComposer::class            => 'layouts.hots',
+        FriendshipLinksComposer::class => 'layouts.friendship_links',
+        NewCommentsComposer::class     => 'layouts.new_comments'
     ];
 
     /**

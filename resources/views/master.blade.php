@@ -29,7 +29,7 @@
 </div>
 @include('layouts.footer')
 
-<script src="{{ asset('jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>
 <script src="{{ asset('js/zx.js') }}"></script>

@@ -225,5 +225,9 @@ return [
         'friendship_links' => '友情链接',
         'sentences'        => '每日一句',
         'configs'          => '配置',
+        'categories'       => '分类列表',
     ],
+
+    'categories' => '分类',
+    'tags'       => '标签'
 ];

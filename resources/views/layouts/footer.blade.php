@@ -1,8 +1,8 @@
 <footer class="footer">
     <ul class="list-inline">
-        @foreach($tags as $tag)
+        @foreach($categories as $id => $category)
             <li class="cat-item cat-item-342">
-                <a href="#" title="{{ $tag }}">{{ $tag }}</a>
+                <a href="{{ route('home.index_category', ['id' => $id]) }}" title="{{ $category }}">{{ $category }}</a>
             </li>
         @endforeach
     </ul>
