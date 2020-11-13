@@ -4,7 +4,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-navbar-collapse" aria-expanded="false"><span class="sr-only">下拉菜单</span> <span
                     class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-            <a href="https://www.ewayee.com/" class="navbar-brand">忆未乙个人博客 | 技术博客</a></div>
+            <a href="https://www.ewayee.com/" class="navbar-brand">{{ $configs['title'] ?? '博客' }} | 技术博客</a></div>
         <div class="collapse navbar-collapse" id="bs-navbar-collapse">
             <ul class="nav navbar-nav top-navbar-nav">
                 <li class="active"><a href="https://www.ewayee.com/">首页</a></li>

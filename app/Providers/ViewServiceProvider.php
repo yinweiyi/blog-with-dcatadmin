@@ -10,7 +10,7 @@ class ViewServiceProvider extends ServiceProvider
 {
 
     protected $composers = [
-        ConfigsComposer::class => ['layouts.footer', 'master'],
+        ConfigsComposer::class => ['layouts.footer', 'layouts.nav', 'master'],
     ];
 
     /**
