@@ -56,7 +56,7 @@ class ArticleController extends AdminController
                 ->options(function () {
                     return Category::query()->orderBy('order')->pluck('name', 'id');
                 })->customFormat(function ($v) {
-                   return $v;
+                    return $v;
                 });;
             $form->text('title');
             $form->text('author')->default(Auth::guard('admin')->user()->username);

@@ -4,7 +4,7 @@
         <ul class="list-group">
             @foreach($hots as $hot)
                 <li class="list-group-item">
-                    <a href="{{ route('home.article',['id' => $hot->id]) }}" rel="bookmark"
+                    <a href="{{ route('article.show',['id' => $hot->id]) }}" rel="bookmark"
                        title="详细阅读 {{ $hot->title }}">
                         {{ $hot->title }}
                     </a>

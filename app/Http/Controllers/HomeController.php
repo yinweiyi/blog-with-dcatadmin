@@ -36,10 +36,7 @@ class HomeController extends Controller
 
     }
 
-    public function articles($id)
-    {
-        dd($id);
-    }
+
 
     public function about()
     {

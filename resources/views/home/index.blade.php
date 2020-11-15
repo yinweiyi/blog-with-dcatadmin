@@ -16,7 +16,7 @@
                 @foreach($articles as $article)
                     <div class="panel-body">
                         <h2 class="blog-post-title">
-                            <a href="{{ route('home.article', ['id' => $article->id]) }}">{{ $article->title }}</a>
+                            <a href="{{ route('article.show', ['id' => $article->id]) }}">{{ $article->title }}</a>
                         </h2>
                         <p> {{ $article->stripTagHtml() }}</p>
                     </div>
