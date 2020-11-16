@@ -35,7 +35,7 @@
         <div class="col-md-4">
             @include('layouts.tags')
             @include('layouts.hots')
-            @include('layouts.new_comments')
+            @include('layouts.newest_comments')
             @include('layouts.friendship_links')
         </div>
     </div><!-- /.row -->

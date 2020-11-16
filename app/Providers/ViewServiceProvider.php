@@ -20,7 +20,7 @@ class ViewServiceProvider extends ServiceProvider
         CategoriesComposer::class      => 'layouts.footer',
         HotsComposer::class            => 'layouts.hots',
         FriendshipLinksComposer::class => 'layouts.friendship_links',
-        NewCommentsComposer::class     => 'layouts.new_comments'
+        NewCommentsComposer::class     => 'layouts.newest_comments'
     ];
 
     /**

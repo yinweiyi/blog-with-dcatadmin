@@ -33,11 +33,12 @@
                         <p>本文永久链接: {{ request()->fullUrl() }}</p></div>
                 </div>
             </div>
+            @include('layouts.comment', ['id' => $article->id, 'type' => 'article'])
         </div><!-- /.blog-main -->
         <div class="col-md-4">
             @include('layouts.tags')
             @include('layouts.hots')
-            @include('layouts.new_comments')
+            @include('layouts.newest_comments')
         </div>
     </div><!-- /.row -->
 @endsection

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CaptchaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/guest-book', [HomeController::class, 'guestBook'])->name('home.guest_book');
 
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->where('id', '[0-9]+')->name('article.show');
+
+Route::get('/captcha', [CaptchaController::class, 'captcha'])->name('captcha');
 
 
