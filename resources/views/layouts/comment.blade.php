@@ -49,6 +49,7 @@
             this.id = '{{ $id }}';
             this.type = '{{ $type }}';
             this.parentId = 0;
+            this.messageClass = 'text-primary text-danger';
         };
 
         Comment.prototype = {
@@ -59,12 +60,13 @@
                 this.showMessage('正在提交。。。');
                 // alert('正在开发');
             },
-            showMessage(message) {
+            showMessage(message, type) {
                 let messagePanel = $('#ajax-post-msg');
-                messagePanel.show().addClass('text-primary').html(message)
+                type = type || 'primary';
+                messagePanel.show().addClass('text-' + type).html(message)
 
                 setTimeout(function () {
-                    messagePanel.hide().text('').removeClass('text-primary text-danger');
+                    messagePanel.hide().text('').removeClass(this.messageClass);
                 }, 3000)
             }
         };
