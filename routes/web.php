@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CaptchaController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,7 @@ Route::get('/guest-book', [HomeController::class, 'guestBook'])->name('home.gues
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->where('id', '[0-9]+')->name('article.show');
 
 Route::get('/captcha', [CaptchaController::class, 'captcha'])->name('captcha');
+
+Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
 
 

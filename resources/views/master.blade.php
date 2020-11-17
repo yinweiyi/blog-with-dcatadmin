@@ -8,6 +8,7 @@
     <meta name="baidu-site-verification" content="BHraSigcd3">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="{{ $configs['author'] ?? '' }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', $configs['title'] ?? '') | 技术博客</title>
     <meta name="keywords" content="{{ $configs['keywords'] ?? '' }}">
     <meta name="description" content="{{ $configs['description'] ?? '' }}">
@@ -33,6 +34,13 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>
 <script src="{{ asset('js/zx.js') }}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 @yield('js')
 </body>
 </html>

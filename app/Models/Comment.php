@@ -20,6 +20,12 @@ class Comment extends Model
         'top_id'
     ];
 
+    const Types = [
+        'article'   => Article::class,
+        'about'     => Config::class,
+        'guestbook' => Config::class,
+    ];
+
     /**
      * 获取拥有此评论的模型
      */

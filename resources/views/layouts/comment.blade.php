@@ -1,10 +1,10 @@
 <div class="well" id="comment-form-container">
     <div id="respond"><h3>发表评论</h3>
-        <form action="" class="ajax-form" method="post" id="commentform">
+        <form class="ajax-form" method="post" id="commentform">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="text" name="author" id="author" class="form-control" value="" size="22"
+                        <input type="text" name="nickname" id="nickname" class="form-control" value="" size="22"
                                tabindex="1" placeholder="昵称">
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <textarea name="comment" id="comment" class="form-control" tabindex="4" placeholder="无意义内容我可能不会回复你"
+                <textarea name="content" id="content" class="form-control" tabindex="4" placeholder="ヾﾉ≧∀≦)o来啊，快活啊!"
                           rows="3"></textarea>
             </div>
             <div class="form-group">
@@ -48,8 +48,9 @@
         let Comment = function () {
             this.id = '{{ $id }}';
             this.type = '{{ $type }}';
-            this.parentId = 0;
+            this.parentId = 4;
             this.messageClass = 'text-primary text-danger';
+            this.timer = null;
         };
 
         Comment.prototype = {
@@ -57,17 +58,80 @@
                 this.parentId = parentId;
             },
             submit: function (e) {
-                this.showMessage('正在提交。。。');
+                let that = this;
+                let nickname = $('#nickname').val();
+                if (!nickname) {
+                    that.showMessage('请填写昵称', 'danger');
+                    return;
+                }
+                let content = $('#content').val();
+                if (!content) {
+                    that.showMessage('请填写评论内容', 'danger');
+                    return;
+                }
+
+                let captcha = $('#captcha').val();
+                if (!captcha) {
+                    that.showMessage('请填写验证码', 'danger');
+                    return;
+                }
+
+                let data = {
+                    type: this.type,
+                    id: this.id,
+                    parent_id: this.parentId,
+                    nickname: nickname,
+                    content: content,
+                    captcha: captcha
+                };
+
+                let email = $('#email').val();
+                if (email) {
+                    data.email = email;
+                }
+
+                $.ajax({
+                    url: '{{ route('comment.store') }}',
+                    type: 'post',
+                    dataType: 'json',
+                    data: data,
+                    beforeSend: function () {
+                        that.showMessage('正在提交。。。');
+                    },
+                    success: function (data, textStatus) {
+                        if (data.code !== 200) {
+                            that.showMessage(data.message, 'danger');
+                            return;
+                        }
+                        that.showMessage(data.message, 'primary', 2000, function () {
+                            location.href = that.getCommentPosition(data.data.comment_id);
+                        });
+                    }
+                })
                 // alert('正在开发');
             },
-            showMessage(message, type) {
+            getCommentPosition: function (commentId) {
+                let href = location.href, parsedUrl = href.split('#');
+                return parsedUrl[0] + '#comment-' + commentId;
+
+            },
+            showMessage: function (message, type, timeout, callback) {
+                if (this.timer) {
+                    clearTimeout(this.timer);
+                    this.timer = null;
+                }
+
                 let messagePanel = $('#ajax-post-msg');
                 type = type || 'primary';
+                timeout = timeout || 2000;
                 messagePanel.show().addClass('text-' + type).html(message)
-
-                setTimeout(function () {
+                this.timer = setTimeout(function () {
+                    if (callback) {
+                        callback.call();
+                        return;
+                    }
                     messagePanel.hide().text('').removeClass(this.messageClass);
-                }, 3000)
+                }, timeout)
             }
         };
 
