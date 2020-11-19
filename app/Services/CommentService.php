@@ -18,6 +18,7 @@ class CommentService
 {
 
     /**
+     *
      * @param Model $model
      * @return LengthAwarePaginator
      */
@@ -26,9 +27,8 @@ class CommentService
         $fields = ['id', 'parent_id', 'content', 'nickname', 'email', 'commentable_id', 'commentable_type', 'top_id', 'created_at'];
 
         $comments = $model->comments()
-            ->select($fields)
             ->where(['top_id' => 0, 'is_audited' => 1])
-            ->orderByDesc('id')->paginate(5);
+            ->orderByDesc('id')->paginate(5, $fields, 'comment-page');
         if ($comments->isEmpty()) return $comments;
 
         $topIds = $comments->pluck('id')->unique();
@@ -41,8 +41,10 @@ class CommentService
 
         $unlimitedComments = $this->unlimitedForLayer($allComments->toArray());
 
-        return new LengthAwarePaginator($unlimitedComments,$comments->total(), $comments->currentPage(),[
-            'path' => Paginator::resolveCurrentPath(),
+        return new LengthAwarePaginator($unlimitedComments, $comments->total(), 5, $comments->currentPage(), [
+            'path'     => Paginator::resolveCurrentPath(),
+            'fragment' => 'comments',
+            'pageName' => 'comment-page'
         ]);
     }
 
