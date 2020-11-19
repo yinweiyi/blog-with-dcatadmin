@@ -9,6 +9,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
+use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends AdminController

@@ -48,7 +48,7 @@
         let Comment = function () {
             this.id = '{{ $id }}';
             this.type = '{{ $type }}';
-            this.parentId = 4;
+            this.parentId = 0;
             this.messageClass = 'text-primary text-danger';
             this.timer = null;
         };
@@ -104,7 +104,8 @@
                             return;
                         }
                         that.showMessage(data.message, 'primary', 2000, function () {
-                            location.href = that.getCommentPosition(data.data.comment_id);
+                            //location.href = that.getCommentPosition(data.data.comment_id);
+                            location.replace(that.getCommentPosition(data.data.comment_id));
                         });
                     }
                 })

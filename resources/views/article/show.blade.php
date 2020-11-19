@@ -33,6 +33,24 @@
                         <p>本文永久链接: {{ request()->fullUrl() }}</p></div>
                 </div>
             </div>
+            <ul class="pager post-pager">
+                @if(!is_null($last))
+                    <li class="previous">
+                        <a href="{{ route('article.show',['id' => $last->id]) }}" rel="prev">上一篇</a>
+                    </li>
+                @endif
+                @if(!is_null($next))
+                    <li class="next">
+                        <a href="{{ route('article.show', ['id' => $next->id]) }}" rel="next">下一篇</a>
+                    </li>
+                @endif
+            </ul>
+            <div id="comments" style="height: auto !important;">
+                @include('layouts.comments', [compact('comments')])
+            </div>
+            <div>
+                {{ $comments->links() }}
+            </div>
             @include('layouts.comment', ['id' => $article->id, 'type' => 'article'])
         </div><!-- /.blog-main -->
         <div class="col-md-4">
