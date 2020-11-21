@@ -27,6 +27,8 @@ class ArticleController extends Controller
 
         $comments = $commentService->treeFromArticle($article);
 
+        dd($comments);
+
         return view('article.show', compact('article', 'last', 'next', 'comments'));
     }
 }
