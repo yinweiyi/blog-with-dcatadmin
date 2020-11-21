@@ -18,8 +18,8 @@ use App\Http\Controllers\CommentController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/category/{id}', [HomeController::class, 'category'])->where('id', '[0-9]+')->name('home.index_category');
-Route::get('/tag/{id}', [HomeController::class, 'tag'])->where('id', '[0-9]+')->name('home.index_tag');
+Route::get('/category/{category}', [HomeController::class, 'category'])->where('category', '[0-9]+')->name('home.index_category');
+Route::get('/tag/{tag}', [HomeController::class, 'tag'])->where('tag', '[0-9]+')->name('home.index_tag');
 
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/guest-book', [HomeController::class, 'guestBook'])->name('home.guest_book');

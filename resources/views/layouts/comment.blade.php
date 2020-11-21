@@ -1,5 +1,14 @@
 <div class="well" id="comment-form-container">
-    <div id="respond"><h3>发表评论</h3>
+    <div id="respond">
+        <h3>发表评论</h3>
+        <div class="cancel-comment-reply">
+            <div id="real-avatar"></div>
+            <small>
+                <a rel="nofollow" id="cancel-reply" style="display: none" href="javascript:">
+                    点击这里取消回复。
+                </a>
+            </small>
+        </div>
         <form class="ajax-form" method="post" id="commentform">
             <div class="row">
                 <div class="col-md-4">
@@ -54,6 +63,10 @@
         };
 
         Comment.prototype = {
+            init: function () {
+                $('#nickname').val(window.localStorage.getItem('nickname'));
+                $('#email').val(window.localStorage.getItem('email'));
+            },
             setParentId: function (parentId) {
                 this.parentId = parentId;
             },
@@ -98,18 +111,22 @@
                     beforeSend: function () {
                         that.showMessage('正在提交。。。');
                     },
-                    success: function (data, textStatus) {
-                        if (data.code !== 200) {
-                            that.showMessage(data.message, 'danger');
+                    success: function (result, textStatus) {
+                        if (result.code !== 200) {
+                            that.showMessage(result.message, 'danger');
                             return;
                         }
-                        that.showMessage(data.message, 'primary', 2000, function () {
-                            //location.href = that.getCommentPosition(data.data.comment_id);
-                            location.replace(that.getCommentPosition(data.data.comment_id));
+                        that.showMessage(result.message, 'primary', 2000, function () {
+                            if (window.localStorage) {
+                                window.localStorage.setItem('nickname', data.nickname);
+                                window.localStorage.setItem('email', data.email)
+
+                            }
+                            location.href = that.getCommentPosition(result.data.comment_id);
+                            location.reload()
                         });
                     }
                 })
-                // alert('正在开发');
             },
             getCommentPosition: function (commentId) {
                 let href = location.href, parsedUrl = href.split('#');
@@ -136,10 +153,25 @@
             }
         };
 
-        let comment = new Comment();
+        let comment = new Comment(), cancelReply = $('#cancel-reply');
+
+        if (window.localStorage) {
+            comment.init();
+        }
         $('#submit').on('click', function () {
             comment.submit();
             return false;
+        });
+
+        $('#comments').on('click', '.comment-reply-link', function () {
+            let parentId = $(this).data('id');
+            cancelReply.show();
+            comment.setParentId(parentId)
+        });
+
+        cancelReply.on('click', function () {
+            cancelReply.hide();
+            comment.setParentId(0)
         })
     </script>
 @endsection

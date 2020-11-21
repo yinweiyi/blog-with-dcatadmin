@@ -70,12 +70,18 @@ class ArticleController extends AdminController
                 });
             $form->text('keywords');
             $form->markdown('markdown');
+            $form->hidden('html');
             $form->number('order');
             $form->textarea('description');
             $form->radio('is_top')->options([0 => '否', 1 => '是'])->default(0);
             $form->number('views')->default(0);
             $form->display('created_at');
             $form->display('updated_at');
+        })->saving(function (Form $form) {
+            if ($form->markdown) {
+                $html = Markdown::parse($form->markdown);
+                $form->html = $html;
+            }
         });
     }
 }

@@ -20,4 +20,5 @@ Route::group([
     $router->resource('/sentences', 'SentenceController');
     $router->resource('/categories', 'CategoryController');
     $router->resource('/tags', 'TagController');
+    $router->resource('/abouts', 'AboutController');
 });

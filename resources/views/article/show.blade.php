@@ -1,18 +1,21 @@
 @extends('master')
 
+@section('title', $article->title)
+@section('keywords', $article->keywords)
+
 @section('container')
     <div class="row">
         <div class="col-md-8">
             <div id="article" class="well"> 当前位置：
                 <a href="{{ route('home.index') }}" title="{{ $config['title'] ?? '' }}">博客首页</a>&gt;&gt;
-                <a href="{{ route('home.index_category', ['id' => $article->category_id]) }}">{{ $article->category->name }}</a>
+                <a href="{{ route('home.index_category', ['category' => $article->category_id]) }}">{{ $article->category->name }}</a>
                 &gt;&gt; 阅读正文
                 <h2 class="blog-post-title">
                     {{ $article->title }}
                 </h2>
                 <p class="info"><span class="meat_span">作者: {{ $config['author'] ?? '' }}</span>
                     <span class="meat_span">分类:
-                        <a href="{{ route('home.index_category', ['id' => $article->category_id]) }}"
+                        <a href="{{ route('home.index_category', ['category' => $article->category_id]) }}"
                            rel="category tag">{{ $article->category->name }}</a>
                     </span> <span class="meat_span">发布于: {{ $article->created_at }}</span>
                     <span class="meat_span">浏览：{{ number_format($article->views) }}</span>
@@ -45,9 +48,12 @@
                     </li>
                 @endif
             </ul>
-            <div id="comments" style="height: auto !important;">
-                @include('layouts.comments', [compact('comments')])
-            </div>
+            @if($article->comments_count)
+                <div id="comments" style="height: auto !important;">
+                    <h3> {{ $article->title }} : 目前有 {{ $article->comments_count }} 条评论</h3>
+                    @include('layouts.comments', compact('comments'))
+                </div>
+            @endif
             <div>
                 {{ $comments->links() }}
             </div>

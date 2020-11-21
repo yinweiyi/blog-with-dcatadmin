@@ -13,7 +13,7 @@
                 </div>
             @endif
             <div class="panel panel-index-left">
-                @foreach($articles as $article)
+                @forelse($articles as $article)
                     <div class="panel-body">
                         <h2 class="blog-post-title">
                             <a href="{{ route('article.show', ['id' => $article->id]) }}">{{ $article->title }}</a>
@@ -23,10 +23,14 @@
                     <div class="panel-footer">发布于{{ $article->created_at->format('Y-m-d') }}&nbsp;|&nbsp;
                         浏览：{{ $article->views }}&nbsp;|&nbsp;Tags：
                         @foreach($article->tags as $tag)
-                            <a href="{{ route('home.index_tag', ['id' => $tag->id]) }}" rel="tag">{{ $tag->name }}</a>
+                            <a href="{{ route('home.index_tag', ['tag' => $tag->id]) }}" rel="tag">{{ $tag->name }}</a>
                         @endforeach
                     </div>
-                @endforeach
+                @empty
+                    <div class="panel-body">
+                        暂无博文
+                    </div>
+                @endforelse
             </div>
             <ul class="pagination">
                 {{ $articles->render() }}

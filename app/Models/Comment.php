@@ -22,7 +22,7 @@ class Comment extends Model
 
     const Types = [
         'article'   => Article::class,
-        'about'     => Config::class,
+        'about'     => About::class,
         'guestbook' => Config::class,
     ];
 

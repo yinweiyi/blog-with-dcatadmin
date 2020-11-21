@@ -6,9 +6,8 @@
                 <strong>{{ $comment['nickname'] }}</strong>：
                 <span class="datetime">发表于  {{ date('Y年m月d H:i', strtotime($comment['created_at'])) }}
                 <span class="reply">
-                    <a rel="nofollow" class="comment-reply-link" href="javascript:"
-                       data-commentid="{{ $comment['id'] }}"
-                       data-respondelement="respond" aria-label="回复给{{ $comment['nickname'] }}">[回复]</a>
+                    <a rel="nofollow" class="comment-reply-link" href="#respond"
+                       data-id="{{ $comment['id'] }}" aria-label="回复给{{ $comment['nickname'] }}">[回复]</a>
                 </span>
             </span>
             </div>

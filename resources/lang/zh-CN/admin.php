@@ -226,6 +226,7 @@ return [
         'sentences'        => '每日一句',
         'configs'          => '配置',
         'categories'       => '分类列表',
+        'abouts'           => '关于',
     ],
 
     'categories' => '分类',

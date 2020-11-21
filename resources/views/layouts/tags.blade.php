@@ -4,7 +4,7 @@
         <div class="panel-body tagcloud">
 
             @foreach($tags as $id => $tag)
-                <a href="{{ route('home.index_tag', ['id' => $id])  }}"
+                <a href="{{ route('home.index_tag', ['tag' => $id])  }}"
                    class="tag-cloud-link tag-link-13 tag-link-position-1"
                    style="color:{{ random_color() }};font-size: {{ mt_rand(8,14) }}pt;"
                    aria-label="{{ $tag }} (2个项目);">

@@ -2,7 +2,7 @@
     <ul class="list-inline">
         @foreach($categories as $id => $category)
             <li class="cat-item cat-item-342">
-                <a href="{{ route('home.index_category', ['id' => $id]) }}" title="{{ $category }}">{{ $category }}</a>
+                <a href="{{ route('home.index_category', ['category' => $id]) }}" title="{{ $category }}">{{ $category }}</a>
             </li>
         @endforeach
     </ul>

@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-	use HasDateTimeFormatter;
+    use HasDateTimeFormatter;
     use SoftDeletes;
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class);
     }
+}
