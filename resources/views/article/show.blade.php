@@ -51,7 +51,7 @@
             @if($article->comments_count)
                 <div id="comments" style="height: auto !important;">
                     <h3> {{ $article->title }} : 目前有 {{ $article->comments_count }} 条评论</h3>
-                    @include('layouts.comments', compact('comments'))
+                    @include('layouts.comments')
                 </div>
             @endif
             <div>

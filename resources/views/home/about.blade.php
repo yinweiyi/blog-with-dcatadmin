@@ -17,7 +17,7 @@
                     @if($abouts->first()->comments_count)
                         <div id="comments" style="height: auto !important;">
                             <h3> 关于 : 目前有 {{ $abouts->first()->comments_count }} 条评论</h3>
-                            @include('layouts.comments', compact('comments'))
+                            @include('layouts.comments')
                         </div>
                     @endif
 
