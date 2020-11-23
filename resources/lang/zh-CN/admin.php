@@ -222,13 +222,17 @@ return [
         'articles'         => '文章列表',
         'tags'             => '标签列表',
         'other'            => '其它',
-        'friendship_links' => '友情链接',
+        'friendship_links' => '列表',
         'sentences'        => '每日一句',
-        'configs'          => '配置',
+        'configs'          => '列表',
         'categories'       => '分类列表',
         'abouts'           => '关于',
+        'guestbook'        => '留言板',
+        'config'           => '配置',
+        'friendship_link'  => '友情链接',
     ],
 
     'categories' => '分类',
-    'tags'       => '标签'
+    'tags'       => '标签',
+
 ];

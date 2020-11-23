@@ -22,4 +22,5 @@ Route::group([
     $router->resource('/tags', 'TagController');
     $router->resource('/abouts', 'AboutController');
     $router->resource('/guestbook', 'GuestbookController');
+    $router->resource('/comments', 'CommentController');
 });

@@ -24,7 +24,6 @@ class GuestbookController extends AdminController
             $grid->column('can_comment')->switch();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-
             $grid->disableViewButton();
         });
     }

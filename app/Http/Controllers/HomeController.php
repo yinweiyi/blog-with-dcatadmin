@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\About;
 use App\Models\Article;
 use App\Models\Guestbook;
-use App\Models\Sentence;
 use App\Models\Tag;
 use App\Services\CommentService;
 use Illuminate\Http\Request;
