@@ -10,7 +10,7 @@
                 <li class="active"><a href="{{ route('home.index') }}">首页</a></li>
                 {{--                <li><a href="https://www.ewayee.com/sitemap.html">地图</a></li>--}}
                 <li><a href="{{ route('home.about') }}">关于</a></li>
-                <li><a href="{{ route('home.guest_book') }}">留言</a></li>
+                <li><a href="{{ route('home.guestbook') }}">留言</a></li>
             </ul>
             <form id="search-form" class="navbar-form navbar-right" role="search" target="_blank"
                   action="{{ route('home.index') }}" method="get">

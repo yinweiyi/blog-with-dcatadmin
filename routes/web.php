@@ -22,7 +22,7 @@ Route::get('/category/{category}', [HomeController::class, 'category'])->where('
 Route::get('/tag/{tag}', [HomeController::class, 'tag'])->where('tag', '[0-9]+')->name('home.index_tag');
 
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
-Route::get('/guest-book', [HomeController::class, 'guestBook'])->name('home.guest_book');
+Route::get('/guestbook', [HomeController::class, 'guestbook'])->name('home.guestbook');
 
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->where('id', '[0-9]+')->name('article.show');
 

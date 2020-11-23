@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Article;
+use App\Models\Guestbook;
 use App\Models\Sentence;
 use App\Models\Tag;
 use App\Services\CommentService;
@@ -65,7 +66,9 @@ class HomeController extends Controller
      */
     public function about(CommentService $commentService)
     {
-        $abouts = About::query()->where('is_enable', 1)->withCount('comments')->orderBy('order')->get();
+        $abouts = About::query()->where('is_enable', 1)->withCount(['comments' => function ($query) {
+            $query->where('is_audited', 1);
+        }])->orderBy('order')->get();
 
         $comments = null;
         if ($abouts->count()) {
@@ -76,8 +79,20 @@ class HomeController extends Controller
         return view('home.about', compact('abouts', 'comments'));
     }
 
-    public function guestBook()
+    /**
+     * @param CommentService $commentService
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function guestbook(CommentService $commentService)
     {
+        $guestbook = Guestbook::query()->withCount(['comments' => function ($query) {
+            $query->where('is_audited', 1);
+        }])->first();
 
+        $comments = null;
+        if (!is_null($guestbook)) {
+            $comments = $commentService->treeFromArticle($guestbook);
+        }
+        return view('home.guestbook', compact('guestbook', 'comments'));
     }
 }

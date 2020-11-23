@@ -18,7 +18,9 @@ class ArticleController extends Controller
     {
         $article = Article::query()->select(['id', 'title', 'author', 'keywords', 'html', 'views', 'category_id'])->with(['category' => function ($query) {
             $query->select(['id', 'name']);
-        }])->withCount('comments')->find($id);
+        }])->withCount(['comments' => function($query) {
+            $query->where('is_audited', 1);
+        }])->find($id);
 
         $article->increment('views');
 

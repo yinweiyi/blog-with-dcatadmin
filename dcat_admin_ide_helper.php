@@ -22,10 +22,11 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection require_dev
      * @property Grid\Column|Collection id
      * @property Grid\Column|Collection markdown
+     * @property Grid\Column|Collection order
+     * @property Grid\Column|Collection is_enable
      * @property Grid\Column|Collection created_at
      * @property Grid\Column|Collection updated_at
      * @property Grid\Column|Collection parent_id
-     * @property Grid\Column|Collection order
      * @property Grid\Column|Collection icon
      * @property Grid\Column|Collection uri
      * @property Grid\Column|Collection user_id
@@ -66,7 +67,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
      * @property Grid\Column|Collection link
-     * @property Grid\Column|Collection is_enable
+     * @property Grid\Column|Collection can_comment
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection translation
      * @property Grid\Column|Collection email_verified_at
@@ -82,10 +83,11 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection require_dev(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
      * @method Grid\Column|Collection markdown(string $label = null)
+     * @method Grid\Column|Collection order(string $label = null)
+     * @method Grid\Column|Collection is_enable(string $label = null)
      * @method Grid\Column|Collection created_at(string $label = null)
      * @method Grid\Column|Collection updated_at(string $label = null)
      * @method Grid\Column|Collection parent_id(string $label = null)
-     * @method Grid\Column|Collection order(string $label = null)
      * @method Grid\Column|Collection icon(string $label = null)
      * @method Grid\Column|Collection uri(string $label = null)
      * @method Grid\Column|Collection user_id(string $label = null)
@@ -126,7 +128,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
      * @method Grid\Column|Collection link(string $label = null)
-     * @method Grid\Column|Collection is_enable(string $label = null)
+     * @method Grid\Column|Collection can_comment(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection translation(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
@@ -147,10 +149,11 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection require_dev
      * @property Show\Field|Collection id
      * @property Show\Field|Collection markdown
+     * @property Show\Field|Collection order
+     * @property Show\Field|Collection is_enable
      * @property Show\Field|Collection created_at
      * @property Show\Field|Collection updated_at
      * @property Show\Field|Collection parent_id
-     * @property Show\Field|Collection order
      * @property Show\Field|Collection icon
      * @property Show\Field|Collection uri
      * @property Show\Field|Collection user_id
@@ -191,7 +194,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
      * @property Show\Field|Collection link
-     * @property Show\Field|Collection is_enable
+     * @property Show\Field|Collection can_comment
      * @property Show\Field|Collection token
      * @property Show\Field|Collection translation
      * @property Show\Field|Collection email_verified_at
@@ -207,10 +210,11 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection require_dev(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
      * @method Show\Field|Collection markdown(string $label = null)
+     * @method Show\Field|Collection order(string $label = null)
+     * @method Show\Field|Collection is_enable(string $label = null)
      * @method Show\Field|Collection created_at(string $label = null)
      * @method Show\Field|Collection updated_at(string $label = null)
      * @method Show\Field|Collection parent_id(string $label = null)
-     * @method Show\Field|Collection order(string $label = null)
      * @method Show\Field|Collection icon(string $label = null)
      * @method Show\Field|Collection uri(string $label = null)
      * @method Show\Field|Collection user_id(string $label = null)
@@ -251,7 +255,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
      * @method Show\Field|Collection link(string $label = null)
-     * @method Show\Field|Collection is_enable(string $label = null)
+     * @method Show\Field|Collection can_comment(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection translation(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)

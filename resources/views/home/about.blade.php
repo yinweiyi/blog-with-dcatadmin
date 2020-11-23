@@ -4,7 +4,6 @@
     <div class="row">
         <div class="col-md-8 blog-main">
             <div id="article" class="well">
-
                 @forelse($abouts as $about)
                     <h2><strong>{{ $about->title }}</strong></h2>
                     <hr>

@@ -21,4 +21,5 @@ Route::group([
     $router->resource('/categories', 'CategoryController');
     $router->resource('/tags', 'TagController');
     $router->resource('/abouts', 'AboutController');
+    $router->resource('/guestbook', 'GuestbookController');
 });
