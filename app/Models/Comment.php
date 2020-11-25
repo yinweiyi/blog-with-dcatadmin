@@ -16,6 +16,9 @@ class Comment extends Model
         'email',
         'commentable_id',
         'commentable_type',
+        'ip',
+        'is_read',
+        'is_admin_reply',
         'is_audited',
         'top_id'
     ];
