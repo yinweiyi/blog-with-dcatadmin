@@ -22,6 +22,7 @@ class CommentController extends Controller
             $attributes['top_id'] = $parent->top_id ?: $parent->id;
         }
 
+        $attributes['ip'] = $request->ip();
         $comment = $article->comments()->create($attributes);
 
         return $comment->exists() ? $this->success('评论成功', ['comment_id' => $comment->id]) : $this->error('评论失败，请重试');
