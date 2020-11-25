@@ -19,8 +19,12 @@ class ConfigController extends AdminController
     {
         return Grid::make(new Config(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('name');
-            $grid->column('value');
+            $grid->column('title');
+            $grid->column('sub_title');
+            $grid->column('keywords');
+            $grid->column('icp');
+            $grid->column('author');
+            //$grid->column('description');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
@@ -28,24 +32,6 @@ class ConfigController extends AdminController
                 $filter->equal('id');
             });
             $grid->disableViewButton();
-        });
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        return Show::make($id, new Config(), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('value');
-            $show->field('created_at');
-            $show->field('updated_at');
         });
     }
 
@@ -58,8 +44,12 @@ class ConfigController extends AdminController
     {
         return Form::make(new Config(), function (Form $form) {
             $form->display('id');
-            $form->text('name');
-            $form->textarea('value');
+            $form->text('title');
+            $form->text('sub_title');
+            $form->text('keywords');
+            $form->text('icp');
+            $form->text('author');
+            $form->text('description');
 
             $form->display('created_at');
             $form->display('updated_at');

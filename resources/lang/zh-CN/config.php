@@ -1,11 +1,15 @@
-<?php 
+<?php
 return [
-    'labels' => [
+    'labels'  => [
         'Config' => 'Config',
     ],
-    'fields' => [
-        'name' => '配置项键名',
-        'value' => '配置项键值',
+    'fields'  => [
+        'title'       => '网站标题',
+        'sub_title'   => '子标题',
+        'keywords'    => '关键字',
+        'icp'         => 'icp备案号',
+        'author'      => '网站作者',
+        'description' => '网站描述',
     ],
     'options' => [
     ],

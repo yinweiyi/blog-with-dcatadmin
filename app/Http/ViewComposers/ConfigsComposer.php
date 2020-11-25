@@ -16,6 +16,6 @@ class ConfigsComposer
      */
     public function compose(View $view)
     {
-        $view->with('configs', Config::all()->pluck('value', 'name')->toArray());
+        $view->with('configs', Config::query()->first());
     }
 }
