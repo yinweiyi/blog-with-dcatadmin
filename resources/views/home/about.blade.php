@@ -11,19 +11,17 @@
                 @empty
                     暂无关于
                 @endforelse
-
-                @if($abouts->count())
-                    @if($abouts->first()->comments_count)
-                        <div id="comments" style="height: auto !important;">
-                            <h3> 关于 : 目前有 {{ $abouts->first()->comments_count }} 条评论</h3>
-                            @include('layouts.comments')
-                        </div>
-                    @endif
-
-                    @include('layouts.comment', ['id' => $abouts->first()->id, 'type' => 'about'])
+            </div><!-- /.blog-main -->
+            @if($abouts->count())
+                @if($abouts->first()->comments_count)
+                    <div id="comments" style="height: auto !important;">
+                        <h3> 关于 : 目前有 {{ $abouts->first()->comments_count }} 条评论</h3>
+                        @include('layouts.comments')
+                    </div>
                 @endif
 
-            </div><!-- /.blog-main -->
+                @include('layouts.comment', ['id' => $abouts->first()->id, 'type' => 'about'])
+            @endif
         </div>
         <div class="col-md-4">
             @include('layouts.tags')

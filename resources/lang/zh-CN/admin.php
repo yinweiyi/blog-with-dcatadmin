@@ -224,7 +224,7 @@ return [
         'other'            => '其它',
         'friendship_links' => '列表',
         'sentences'        => '每日一句',
-        'configs'          => '列表',
+        'configs'          => '站点配置',
         'config'           => '配置',
         'categories'       => '分类列表',
         'abouts'           => '关于',

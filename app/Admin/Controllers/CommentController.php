@@ -21,15 +21,16 @@ class CommentController extends AdminController
 
             $grid->quickSearch('content');
             $grid->column('id')->sortable();
-            $grid->column('content');
             $grid->column('nickname');
             $grid->column('email');
+            $grid->column('content');
             $grid->column('commentable')->display(function ($item) {
                 return $item['name'] ?? $item['title'] ?? '评论';
             });
+            $grid->column('ip');
             $grid->column('is_audited')->switch();
+            $grid->column('is_read')->switch();
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('ID');

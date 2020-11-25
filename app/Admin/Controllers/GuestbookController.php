@@ -20,7 +20,9 @@ class GuestbookController extends AdminController
     {
         return Grid::make(new Guestbook(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('markdown')->substr(0,60);
+            $grid->column('markdown')->display(function ($markdown) {
+                return strip_tags($markdown);
+            })->substr(0, 60);
             $grid->column('can_comment')->switch();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
