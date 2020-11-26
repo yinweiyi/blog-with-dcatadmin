@@ -14,6 +14,7 @@ return [
         'is_audited' => '是否已审核',
         'top_id' => '顶级ID',
         'is_read' => '是否已读',
+        'reply' => '回复',
     ],
     'options' => [
     ],

@@ -2,6 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\CommentRead;
+use App\Admin\Forms\Reply;
 use App\Admin\Repositories\Comment;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -21,30 +23,38 @@ class CommentController extends AdminController
         return Grid::make(new Comment(['commentable']), function (Grid $grid) {
 
             $grid->quickSearch('content');
-            $grid->column('id')->bold()->sortable();
-            $grid->column('nickname');
-            $grid->column('email');
-            $grid->column('content')->tree(); // 开启树状表格功能
+            $grid->column('id')->sortable('desc');
             $grid->column('commentable')->display(function ($item) {
                 return $item['name'] ?? $item['title'] ?? '评论';
             });
+            $grid->column('nickname');
+            $grid->column('email');
+            $grid->column('content'); // 开启树状表格功能
             $grid->column('ip');
             $grid->column('is_audited')->switch();
             $grid->column('is_read')->switch();
             $grid->column('created_at');
 
+            $grid->reply->display('回复')->modal('回复', function () {
+                return Reply::make($this->toArray());
+            });
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('ID');
                 $filter->equal('is_read')->radio(['否', '是']);
                 $filter->like('content');
-                $commentableTypes = \App\Models\Comment::query()->pluck('commentable_type','commentable_type');
+                $commentableTypes = \App\Models\Comment::query()->pluck('commentable_type', 'commentable_type');
                 $filter->equal('commentable_type')->select($commentableTypes);
             });
-
             //$grid->column('reply')->show;
+            $grid->batchActions([
+                new CommentRead('标记已读', 1),
+                new CommentRead('标记未读', 0)
+            ]);
 
             $grid->disableCreateButton();
             $grid->disableViewButton();
+            $grid->disableDeleteButton();
             $grid->paginate(10);
         });
     }
