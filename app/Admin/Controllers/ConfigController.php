@@ -32,6 +32,9 @@ class ConfigController extends AdminController
                 $filter->equal('id');
             });
             $grid->disableViewButton();
+            $grid->disableBatchDelete();
+            $grid->disableDeleteButton();
+            $grid->disableCreateButton();
         });
     }
 

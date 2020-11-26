@@ -17,13 +17,14 @@ class CommentController extends AdminController
      */
     protected function grid()
     {
+
         return Grid::make(new Comment(['commentable']), function (Grid $grid) {
 
             $grid->quickSearch('content');
-            $grid->column('id')->sortable();
+            $grid->column('id')->bold()->sortable();
             $grid->column('nickname');
             $grid->column('email');
-            $grid->column('content');
+            $grid->column('content')->tree(); // 开启树状表格功能
             $grid->column('commentable')->display(function ($item) {
                 return $item['name'] ?? $item['title'] ?? '评论';
             });
@@ -34,12 +35,16 @@ class CommentController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('ID');
+                $filter->equal('is_read')->radio(['否', '是']);
                 $filter->like('content');
                 $commentableTypes = \App\Models\Comment::query()->pluck('commentable_type','commentable_type');
                 $filter->equal('commentable_type')->select($commentableTypes);
             });
 
+            //$grid->column('reply')->show;
+
             $grid->disableCreateButton();
+            $grid->disableViewButton();
             $grid->paginate(10);
         });
     }
@@ -53,16 +58,16 @@ class CommentController extends AdminController
      */
     protected function detail($id)
     {
-        return Show::make($id, new Comment(), function (Show $show) {
+        return Show::make($id, new Comment(['parent', 'top']), function (Show $show) {
             $show->field('id');
-            $show->field('parent_id');
-            $show->field('content');
+            $show->field('parent.content');
+            $show->field('top.content');
             $show->field('nickname');
             $show->field('email');
+            $show->field('content');
             $show->field('commentable_id');
             $show->field('commentable_type');
             $show->field('is_audited');
-            $show->field('top_id');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -75,17 +80,19 @@ class CommentController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Comment(), function (Form $form) {
+        return Form::make(new Comment('commentable'), function (Form $form) {
             $form->display('id');
+            $form->display('top_id');
+            $form->display('commentable')->with(function ($item) {
+                return $item['name'] ?? $item['title'] ?? '评论';
+            });
             $form->text('parent_id');
-            $form->text('content');
             $form->text('nickname');
             $form->text('email');
-            $form->text('commentable_id');
-            $form->text('commentable_type');
-            $form->text('is_audited');
-            $form->text('top_id');
-
+            $form->display('ip');
+            $form->textarea('content');
+            $form->switch('is_audited');
+            $form->switch('is_read');
             $form->display('created_at');
             $form->display('updated_at');
         });
