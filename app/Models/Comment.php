@@ -11,8 +11,10 @@ class Comment extends Model
 {
     use HasDateTimeFormatter, ModelTree;
 
-    protected $fillable = ['parent_id',
+    protected $fillable = [
+        'parent_id',
         'content',
+        'avatar',
         'nickname',
         'email',
         'commentable_id',
