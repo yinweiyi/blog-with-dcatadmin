@@ -35,6 +35,8 @@ class ConfigController extends AdminController
             $grid->disableBatchDelete();
             $grid->disableDeleteButton();
             $grid->disableCreateButton();
+            $grid->disablePagination();
+            $grid->disableFilterButton();
         });
     }
 

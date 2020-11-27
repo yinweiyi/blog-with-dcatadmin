@@ -25,13 +25,8 @@ class AboutController extends AdminController
             $grid->column('is_enable')->switch();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-
-            });
-
             $grid->disableViewButton();
+            $grid->disablePagination();
         });
     }
 

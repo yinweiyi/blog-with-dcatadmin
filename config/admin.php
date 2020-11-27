@@ -322,19 +322,19 @@ return [
     */
     'layout' => [
         // indigo, blue, blue-light, blue-dark, green
-        'color' => 'indigo',
+        'color' => 'blue-dark',
 
         'body_class' => '',
 
         'sidebar_collapsed' => false,
 
         // light, primary, dark
-        'sidebar_style' => 'light',
+        'sidebar_style' => 'dark',
 
         'dark_mode_switch' => false,
 
         // bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark
-        'navbar_color' => '',
+        'navbar_color' => 'bg-dark',
     ],
 
     /*
