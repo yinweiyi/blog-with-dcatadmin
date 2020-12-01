@@ -87,7 +87,7 @@ class ArticleController extends AdminController
             $form->display('created_at');
             $form->display('updated_at');
         })->saving(function (Form $form) {
-            if ($form->markdown) {
+            if ($form->content_type == 1 && $form->markdown) {
                 $html = Markdown::parse($form->markdown);
                 $form->html = $html;
             }
