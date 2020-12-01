@@ -41,8 +41,16 @@ class AboutController extends AdminController
         return Form::make(new About(), function (Form $form) {
             $form->display('id');
             $form->text('title');
-            $form->markdown('markdown');
-            $form->hidden('html');
+            $form->radio('content_type')
+                ->when(1, function (Form $form) {
+                    $form->markdown('markdown');
+                    $form->hidden('html');
+                })
+                ->when(2, function (Form $form) {
+                    $form->editor('html');
+                })
+                ->options([1 => 'markdown', 2 => '编辑器'])
+                ->default(1);
             $form->number('order')->default(1);
             $form->radio('is_enable')->options([0 => '否', 1 => '是'])->default(1);
             $form->display('created_at');

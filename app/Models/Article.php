@@ -13,8 +13,6 @@ class Article extends Model
     use SoftDeletes;
 
 
-    protected $casts = ['is_top' => 'boolean'];
-
     /**
      * 关联标签
      *

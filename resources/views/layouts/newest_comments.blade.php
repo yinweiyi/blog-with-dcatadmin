@@ -9,7 +9,7 @@
                         <span class="pull-right">[{{ $comment->created_at }}]</span>
                     </div>
                     <div class="list-group-item-text">
-                        <a href=" {{ route('guest_book') . '#comment-' . $comment->id }}" title="评论来源: 留言"
+                        <a href=" {{ route('home.guestbook') . '#comment-' . $comment->id }}" title="评论来源: 留言"
                            rel="nofollow">
                             {{ $comment->content }}
                         </a>

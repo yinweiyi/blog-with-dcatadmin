@@ -2,8 +2,14 @@
     <div class="alert alert-info comments-list" id="comment-{{ $comment['id'] }}">
         <div id="div-comment-4942">
             <div class="comment-author vcard">
-                <img src="{{ asset('images/avatar.jpg') }}" alt="用户评论头像" class="img-circle">
-                <strong>{{ $comment['nickname'] }}</strong>：
+                <img src="{{ $comment['avatar'] }}" alt="用户评论头像" class="img-circle">
+                <strong>
+                    @if($comment['is_admin_reply'])
+                        <a href="{{ route('home.index') }}" rel="external nofollow ugc" class="url">{{ $comment['nickname'] }}</a>
+                    @else
+                        {{ $comment['nickname'] }}
+                    @endif
+                </strong>：
                 <span class="datetime">发表于  {{ date('Y年m月d H:i', strtotime($comment['created_at'])) }}
                 <span class="reply">
                     <a rel="nofollow" class="comment-reply-link" href="#respond"

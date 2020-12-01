@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id')->comment('主键');
             $table->string('title')->default('')->comment('标题');
             $table->string('author')->default('')->comment('作者');
+            $table->unsignedTinyInteger('content_type')->default(1)->comment('内容类型：1-markdown 2-html');
             $table->mediumText('markdown')->nullable()->comment('markdown文章内容');
             $table->mediumText('html')->nullable()->comment('markdown转的html页面');
             $table->string('description')->nullable()->comment('描述');

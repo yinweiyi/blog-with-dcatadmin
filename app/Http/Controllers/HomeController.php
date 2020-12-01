@@ -17,7 +17,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-
         $articles = Article::query()
             ->with(['tags' => function ($query) {
                 $query->select(['id', 'name']);

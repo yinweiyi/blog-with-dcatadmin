@@ -3,6 +3,7 @@
 
 namespace App\Http\ViewComposers;
 
+use App\Models\Comment;
 use Illuminate\View\View;
 
 class NewCommentsComposer
@@ -15,6 +16,7 @@ class NewCommentsComposer
      */
     public function compose(View $view)
     {
-        $view->with('newComments', collect());
+        $newComments = Comment::query()->where(['commentable_type' => 'App\Models\Guestbook', 'parent_id' => 0])->orderByDesc('id')->get();
+        $view->with('newComments', $newComments);
     }
 }

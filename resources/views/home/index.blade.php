@@ -12,8 +12,8 @@
                     <p>{{ $sentence->translation }}<span class="pull-right">———— {{ $sentence->author }}</span></p>
                 </div>
             @endif
-            <div class="panel panel-index-left">
-                @forelse($articles as $article)
+            @forelse($articles as $article)
+                <div class="panel panel-index-left">
                     <div class="panel-body">
                         <h2 class="blog-post-title">
                             <a href="{{ route('article.show', ['id' => $article->id]) }}">{{ $article->title }}</a>
@@ -26,12 +26,13 @@
                             <a href="{{ route('home.index_tag', ['tag' => $tag->id]) }}" rel="tag">{{ $tag->name }}</a>
                         @endforeach
                     </div>
-                @empty
-                    <div class="panel-body">
-                        暂无博文
-                    </div>
-                @endforelse
-            </div>
+
+                </div>
+            @empty
+                <div class="panel panel-index-left">
+                    暂无博文
+                </div>
+            @endforelse
             <ul class="pagination">
                 {{ $articles->render() }}
             </ul>

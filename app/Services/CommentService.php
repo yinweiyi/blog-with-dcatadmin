@@ -24,7 +24,7 @@ class CommentService
      */
     public function treeFromArticle(Model $model)
     {
-        $fields = ['id', 'parent_id', 'content', 'nickname', 'email', 'commentable_id', 'commentable_type', 'top_id', 'created_at'];
+        $fields = ['id', 'parent_id', 'content', 'avatar', 'nickname', 'email', 'commentable_id', 'commentable_type', 'is_admin_reply', 'top_id', 'created_at'];
 
         $comments = $model->comments()
             ->where(['top_id' => 0, 'is_audited' => 1])

@@ -20,8 +20,8 @@ class GuestbookController extends AdminController
     {
         return Grid::make(new Guestbook(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('markdown')->display(function ($markdown) {
-                return strip_tags($markdown);
+            $grid->column('html')->display(function ($html) {
+                return strip_tags($html);
             })->substr(0, 60);
             $grid->column('can_comment')->switch();
             $grid->column('created_at');
@@ -41,8 +41,16 @@ class GuestbookController extends AdminController
     {
         return Form::make(new Guestbook(), function (Form $form) {
             $form->display('id');
-            $form->markdown('markdown');
-            $form->hidden('html');
+            $form->radio('content_type')
+                ->when(1, function (Form $form) {
+                    $form->markdown('markdown');
+                    $form->hidden('html');
+                })
+                ->when(2, function (Form $form) {
+                    $form->editor('html');
+                })
+                ->options([1 => 'markdown', 2 => '编辑器'])
+                ->default(1);
             $form->switch('can_comment')->default(1);
 
             $form->display('created_at');

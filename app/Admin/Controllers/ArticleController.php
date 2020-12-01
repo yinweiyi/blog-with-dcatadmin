@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Tag;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Auth;
@@ -69,11 +68,21 @@ class ArticleController extends AdminController
                     return array_column($v, 'id');
                 });
             $form->text('keywords');
-            $form->markdown('markdown');
-            $form->hidden('html');
+
+            $form->radio('content_type')
+                ->when(1, function (Form $form) {
+                    $form->markdown('markdown');
+                })
+                ->when(2, function (Form $form) {
+                    $form->editor('html');
+                })
+                ->options([1 => 'markdown', 2 => '编辑器'])
+                ->default(1);
+
+
             $form->number('order');
             $form->textarea('description');
-            $form->radio('is_top')->options([0 => '否', 1 => '是'])->default(0);
+            $form->radio('is_top')->options(['否', '是'])->default(0);
             $form->number('views')->default(0);
             $form->display('created_at');
             $form->display('updated_at');

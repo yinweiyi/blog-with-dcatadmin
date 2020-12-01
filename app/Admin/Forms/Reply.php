@@ -24,7 +24,7 @@ class Reply extends Form
         $comment = Comment::query()->create([
             'parent_id'        => $input['id'],
             'content'          => $input['reply'],
-            'avatar'           => $admin->avarar,
+            'avatar'           => 'storage/' . $admin->avatar,
             'nickname'         => $admin->name,
             'email'            => '378772944@qq.com',
             'commentable_id'   => $input['commentable_id'],
