@@ -53,9 +53,9 @@ class HomeController extends Controller
     protected function framework()
     {
         return Card::make('框架', function () {
-            $dirs = [['name' => 'storage', 'path' => storage_path()]];
+            $dirs = [['name' => 'storage权限', 'path' => storage_path()]];
             $frameworks = [
-                ['Laravel版本', app()->version()],
+                ['版本', sprintf('Laravel %s', app()->version())],
                 ['缓存驱动', config('cache.default')],
                 ['Session驱动', config('session.driver')],
                 ...$this->pathsInfo($dirs)
