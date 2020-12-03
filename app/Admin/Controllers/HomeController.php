@@ -48,15 +48,14 @@ class HomeController extends Controller
     protected function systemInfo()
     {
         return Card::make('系统信息', function () {
-            $mysqlVersion = DB::select("select version() as version")[0]->version;
             return new Table(
                 [
-                    ['操作系统', exec(' cat /proc/version')],
+                    ['操作系统', php_uname()],
                     ['运行环境', request()->server('SERVER_SOFTWARE')],
                     ['PHP环境', sprintf('%s (%s)', PHP_VERSION, php_sapi_name())],
-                    ['MYSQL版本', $mysqlVersion],
+                    ['MYSQL版本', DB::connection()->getPdo()->getAttribute(\PDO::ATTR_SERVER_VERSION)],
                     ['上传大小限制', sprintf('%s (PHP环境允许上传附件的大小限制)', ini_get('upload_max_filesize'))],
-                    ['表单大小限制', sprintf('%sM (会影响上传附件大小)', ini_get('max_file_uploads'))],
+                    ['表单大小限制', sprintf('%sM (会影响上传附件大小)', ini_get('post_max_size'))],
                     ['执行时间限制', sprintf('%s秒 (0表示无限制)', ini_get('max_execution_time'))],
                     ['运行内存限制', sprintf('%s (允许PHP脚本使用的最大内存)', ini_get('memory_limit'))],
                     ['剩余空间', human_filesize(disk_free_space('.'))],
