@@ -2,11 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Metrics\Examples;
 use App\Http\Controllers\Controller;
-use App\Layout\Column;
-use Dcat\Admin\Controllers\Dashboard;
-use Dcat\Admin\Grid;
+use App\Layout\Column as TableColumn;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
@@ -22,23 +19,8 @@ class HomeController extends Controller
             ->description('系统信息...')
             ->body(function (Row $row) {
                 $row->column(8, $this->systemInfo());
-                $row->column(4, $this->directoryAuthority());
+                $row->column(4, $this->framework());
                 $row->column(12, $this->phpExtends());
-
-                /*$row->column(6, function (Column $column) {
-                    $column->row(Dashboard::title());
-                    $column->row(new Examples\Tickets());
-                });
-
-                $row->column(6, function (Column $column) {
-                    $column->row(function (Row $row) {
-                        $row->column(6, new Examples\NewUsers());
-                        $row->column(6, new Examples\NewDevices());
-                    });
-
-                    $column->row(new Examples\Sessions());
-                    $column->row(new Examples\ProductOrders());
-                });*/
             });
     }
 
@@ -50,13 +32,10 @@ class HomeController extends Controller
         return Card::make('系统信息', function () {
             return new Table(
                 [
-                    [Column::make('操作系统')->width(120), php_uname()],
+                    [TableColumn::make('操作系统')->width(120), php_uname()],
                     ['运行环境', request()->server('SERVER_SOFTWARE')],
                     ['PHP环境', sprintf('%s (%s)', PHP_VERSION, php_sapi_name())],
                     ['MYSQL版本', DB::connection()->getPdo()->getServerVersion()],
-                    ['Laravel版本', app()->version()],
-                    ['缓存驱动', config('cache.default')],
-                    ['Session驱动', config('session.driver')],
                     ['上传大小限制', sprintf('%s (PHP环境允许上传附件的大小限制)', ini_get('upload_max_filesize'))],
                     ['表单大小限制', sprintf('%s (会影响上传附件大小)', ini_get('post_max_size'))],
                     ['执行时间限制', sprintf('%s秒 (0表示无限制)', ini_get('max_execution_time'))],
@@ -69,15 +48,22 @@ class HomeController extends Controller
     }
 
     /**
-     * 目录权限
-     *
      * @return Card
      */
-    protected function directoryAuthority()
+    protected function framework()
     {
-        return Card::make('目录权限', function () {
+        return Card::make('框架', function () {
             $dirs = [['name' => 'storage', 'path' => storage_path()]];
-            return new Table($this->pathsInfo($dirs));
+            $frameworks = [
+                ['Laravel版本', app()->version()],
+                ['缓存驱动', config('cache.default')],
+                ['Session驱动', config('session.driver')],
+                ...$this->pathsInfo($dirs)
+            ];
+
+
+            return new Table($frameworks);
+
         });
     }
 
@@ -110,9 +96,9 @@ class HomeController extends Controller
         foreach ($dirs as $dir) {
 
             if (!is_dir($dir['path'])) {
-                $column = Column::make()->label('不可读', 'danger')->label('不可写', 'danger');
+                $column = TableColumn::make()->label('不可读', 'danger')->label('不可写', 'danger');
             } else {
-                $column = Column::make();
+                $column = TableColumn::make();
                 is_readable($dir['path']) ? $column->label('可读', 'primary') : $column->label('不可读', 'danger');
                 is_writable($dir['path']) ? $column->label('可写', 'primary') : $column->label('不可写', 'danger');
             }
@@ -130,7 +116,7 @@ class HomeController extends Controller
         $results = [];
         foreach ($extends as $extend) {
             list($name, $extension, $type, $remark) = $extend;
-            $column = Column::make();
+            $column = TableColumn::make();
             $results[] = [$name, extension_loaded($extension) ? $column->label('正常', 'primary') : $column->label('异常', 'danger'), $type, $remark];
         }
         return $results;
