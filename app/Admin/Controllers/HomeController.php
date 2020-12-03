@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Layout\Column as TableColumn;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
@@ -55,7 +56,8 @@ class HomeController extends Controller
         return Card::make('框架', function () {
             $dirs = [['name' => 'storage权限', 'path' => storage_path()]];
             $frameworks = [
-                ['版本', sprintf('Laravel %s', app()->version())],
+                [TableColumn::make('Laravel 版本')->width(140), app()->version()],
+                ['Dcat Admin 版本', Admin::VERSION],
                 ['缓存驱动', config('cache.default')],
                 ['Session驱动', config('session.driver')],
                 ...$this->pathsInfo($dirs)
