@@ -2,7 +2,9 @@
 
 @section('title', $article->title)
 @section('keywords', $article->keywords)
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('plugins/highlight/styles/atelier-estuary-dark.css') }}">
+@endsection
 @section('container')
     <div class="row">
         <div class="col-md-8">
@@ -65,4 +67,8 @@
             @include('layouts.newest_comments')
         </div>
     </div><!-- /.row -->
+@endsection
+@section('js')
+    <script src="{{ asset('plugins/highlight/highlight.pack.js') }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 @endsection

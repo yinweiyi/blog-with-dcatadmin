@@ -57,8 +57,8 @@ class ArticleController extends AdminController
                     return Category::query()->orderBy('order')->pluck('name', 'id');
                 })->customFormat(function ($v) {
                     return $v;
-                });;
-            $form->text('title');
+                })->required();
+            $form->text('title')->required();
             $form->text('author')->default(Auth::guard('admin')->user()->username);
             $form->multipleSelect('tags', trans('admin.tags'))
                 ->options(function () {
@@ -67,7 +67,7 @@ class ArticleController extends AdminController
                 ->customFormat(function ($v) {
                     return array_column($v, 'id');
                 });
-            $form->text('keywords');
+            $form->text('keywords')->required();
 
             $form->radio('content_type')
                 ->when(1, function (Form $form) {
