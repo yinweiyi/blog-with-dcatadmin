@@ -20,6 +20,7 @@ class CategoryController extends AdminController
         return Grid::make(new Category(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('name');
+            $grid->column('slug');
             $grid->column('order')->sortable()->editable();
             $grid->column('description');
             $grid->column('created_at');
@@ -43,6 +44,9 @@ class CategoryController extends AdminController
         return Form::make(new Category(), function (Form $form) {
             $form->display('id');
             $form->text('name');
+            $form->text('slug')->required()->rules('required|regex:/^[\d\w-]{1,50}$/', [
+                'regex' => 'slug必须为1-50位数字、字母或中横线',
+            ]);
             $form->number('order');
             $form->textarea('description');
 

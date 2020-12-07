@@ -25,6 +25,7 @@ class ArticleController extends AdminController
             $grid->column('title')->display(function ($title) {
                 return sprintf('<a href="%s" target="_blank">%s</a>', route('article.show', ['id' => $this->id]), $title);
             });
+            $grid->column('slug');
             $grid->column('author');
             $grid->column('keywords');
             $grid->column('order');
@@ -62,6 +63,9 @@ class ArticleController extends AdminController
                     return $v;
                 })->required();
             $form->text('title')->required();
+            $form->text('slug')->required()->rules('required|regex:/^[\d\w-]{1,50}$/', [
+                'regex' => 'slug必须为1-50位数字、字母或中横线',
+            ]);
             $form->text('author')->default(Auth::guard('admin')->user()->username);
             $form->multipleSelect('tags', trans('admin.tags'))
                 ->options(function () {

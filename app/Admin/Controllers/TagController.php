@@ -20,6 +20,7 @@ class TagController extends AdminController
         return Grid::make(new Tag(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('name');
+            $grid->column('slug');
             $grid->column('order')->sortable();
             $grid->column('description');
             $grid->column('created_at');
@@ -33,25 +34,6 @@ class TagController extends AdminController
     }
 
     /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        return Show::make($id, new Tag(), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('order');
-            $show->field('description');
-            $show->field('created_at');
-            $show->field('updated_at');
-        });
-    }
-
-    /**
      * Make a form builder.
      *
      * @return Form
@@ -61,6 +43,9 @@ class TagController extends AdminController
         return Form::make(new Tag(), function (Form $form) {
             $form->display('id');
             $form->text('name');
+            $form->text('slug')->required()->rules('required|regex:/^[\d\w-]{1,50}$/', [
+                'regex' => 'slug必须为1-50位数字、字母或中横线',
+            ]);
             $form->number('order');
             $form->textarea('description');
             $form->display('created_at');
