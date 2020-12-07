@@ -22,7 +22,9 @@ class ArticleController extends AdminController
     {
         return Grid::make(new Article(['tags', 'category']), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('title');
+            $grid->column('title')->display(function ($title) {
+                return sprintf('<a href="%s" target="_blank">%s</a>', route('home.index'), $title);
+            });
             $grid->column('author');
             $grid->column('keywords');
             $grid->column('order');
