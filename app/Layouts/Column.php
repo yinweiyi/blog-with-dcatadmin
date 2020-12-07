@@ -6,7 +6,7 @@
  * Time: 下午10:35
  */
 
-namespace App\Layout;
+namespace App\Layouts;
 
 class Column
 {

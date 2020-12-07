@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Layout\Column as TableColumn;
+use App\Layouts\Column as TableColumn;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
