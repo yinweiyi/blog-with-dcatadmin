@@ -16,11 +16,15 @@ class ArticleController extends Controller
      */
     public function show(CommentService $commentService, $id)
     {
-        $article = Article::query()->select(['id', 'title', 'author', 'keywords', 'html', 'views', 'category_id'])->with(['category' => function ($query) {
+        $article = Article::query()->where('is_show', 1)->select(['id', 'title', 'author', 'keywords', 'html', 'views', 'category_id'])->with(['category' => function ($query) {
             $query->select(['id', 'name']);
-        }])->withCount(['comments' => function($query) {
+        }])->withCount(['comments' => function ($query) {
             $query->where('is_audited', 1);
         }])->find($id);
+
+        if (is_null($article)) {
+            return redirect(route('home.index'));
+        }
 
         $article->increment('views');
 

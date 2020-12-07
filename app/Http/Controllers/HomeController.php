@@ -45,6 +45,10 @@ class HomeController extends Controller
         return view('home.index', compact('articles'));
     }
 
+    /**
+     * @param Tag $tag
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function tag(Tag $tag)
     {
         $articles = $tag->articles()
