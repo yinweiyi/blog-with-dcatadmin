@@ -18,6 +18,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $articles = Article::query()
+            ->where('is_show', 1)
             ->with(['tags' => function ($query) {
                 $query->select(['id', 'name']);
             }])

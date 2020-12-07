@@ -30,6 +30,7 @@ class ArticleController extends AdminController
             $grid->column('category.name', trans('category.fields.name'));
             $grid->column('tags')->pluck('name')->label('primary', 3);
             $grid->column('is_top')->switch();
+            $grid->column('is_show')->switch();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
@@ -83,6 +84,7 @@ class ArticleController extends AdminController
             $form->number('order');
             $form->textarea('description');
             $form->radio('is_top')->options(['否', '是'])->default(0);
+            $form->radio('is_show')->options(['否', '是'])->default(1);
             $form->number('views')->default(0);
             $form->display('created_at');
             $form->display('updated_at');
