@@ -28,7 +28,7 @@ class ArticleController extends AdminController
             $grid->column('slug');
             $grid->column('author');
             $grid->column('keywords');
-            $grid->column('order');
+            $grid->column('order')->sortable();
             $grid->column('views');
             $grid->column('category.name', trans('category.fields.name'));
             $grid->column('tags')->pluck('name')->label('primary', 3);
