@@ -16,14 +16,14 @@
                 <div class="panel panel-index-left">
                     <div class="panel-body">
                         <h2 class="blog-post-title">
-                            <a href="{{ route('article.show', ['id' => $article->id]) }}">{{ $article->title }}</a>
+                            <a href="{{ route('article.show', ['slug' => $article->slug]) }}">{{ $article->title }}</a>
                         </h2>
                         <p> {{ $article->stripTagHtml() }}</p>
                     </div>
                     <div class="panel-footer">发布于{{ $article->created_at->format('Y-m-d') }}&nbsp;|&nbsp;
                         浏览：{{ $article->views }}&nbsp;|&nbsp;Tags：
                         @foreach($article->tags as $tag)
-                            <a href="{{ route('home.index_tag', ['tag' => $tag->id]) }}" rel="tag">{{ $tag->name }}</a>
+                            <a href="{{ route('home.index_tag', ['tag' => $tag->slug]) }}" rel="tag">{{ $tag->name }}</a>
                         @endforeach
                     </div>
 

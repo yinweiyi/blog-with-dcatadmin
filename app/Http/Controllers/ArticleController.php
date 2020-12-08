@@ -11,16 +11,18 @@ class ArticleController extends Controller
      * 文章详情
      *
      * @param CommentService $commentService
-     * @param $id
+     * @param $slug
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(CommentService $commentService, $id)
+    public function show(CommentService $commentService, $slug)
     {
-        $article = Article::query()->where('is_show', 1)->select(['id', 'title', 'author', 'keywords', 'html', 'views', 'category_id'])->with(['category' => function ($query) {
-            $query->select(['id', 'name']);
-        }])->withCount(['comments' => function ($query) {
-            $query->where('is_audited', 1);
-        }])->find($id);
+        $article = Article::query()->where('is_show', 1)
+            ->select(['id', 'slug', 'title', 'author', 'keywords', 'html', 'views', 'category_id'])
+            ->with(['category' => function ($query) {
+                $query->select(['id', 'slug', 'name']);
+            }])->withCount(['comments' => function ($query) {
+                $query->where('is_audited', 1);
+            }])->where('slug', $slug)->first();
 
         if (is_null($article)) {
             return redirect(route('home.index'));
@@ -28,8 +30,8 @@ class ArticleController extends Controller
 
         $article->increment('views');
 
-        $last = Article::query()->select(['id', 'title'])->where('id', '<', $id)->orderByDesc('id')->first();
-        $next = Article::query()->select(['id', 'title'])->where('id', '>', $id)->orderBy('id')->first();
+        $last = Article::query()->select(['slug', 'title'])->where('id', '<', $article->id)->orderByDesc('id')->first();
+        $next = Article::query()->select(['slug', 'title'])->where('id', '>', $article->id)->orderBy('id')->first();
 
         $comments = $commentService->treeFromArticle($article);
 

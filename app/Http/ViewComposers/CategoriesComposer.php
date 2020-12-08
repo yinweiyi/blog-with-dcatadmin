@@ -16,6 +16,6 @@ class CategoriesComposer
      */
     public function compose(View $view)
     {
-        $view->with('categories', Category::query()->orderBy('order')->pluck('name', 'id'));
+        $view->with('categories', Category::query()->orderBy('order')->pluck('name', 'slug'));
     }
 }

@@ -18,13 +18,13 @@ use App\Http\Controllers\CommentController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/category/{category}', [HomeController::class, 'category'])->where('category', '[0-9]+')->name('home.index_category');
-Route::get('/tag/{tag}', [HomeController::class, 'tag'])->where('tag', '[0-9]+')->name('home.index_tag');
+Route::get('/category/{category:slug}', [HomeController::class, 'category'])->where('category', '[\d\w-]{1,50}')->name('home.index_category');
+Route::get('/tag/{tag:slug}', [HomeController::class, 'tag'])->where('tag', '[\d\w-]{1,50}')->name('home.index_tag');
 
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/guestbook', [HomeController::class, 'guestbook'])->name('home.guestbook');
 
-Route::get('/articles/{id}', [ArticleController::class, 'show'])->where('id', '[0-9]+')->name('article.show');
+Route::get('/articles/{slug}', [ArticleController::class, 'show'])->where('slug', '[\d\w-]{1,50}')->name('article.show');
 
 Route::get('/captcha', [CaptchaController::class, 'captcha'])->name('captcha');
 

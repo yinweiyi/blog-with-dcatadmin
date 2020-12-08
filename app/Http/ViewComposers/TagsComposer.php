@@ -16,6 +16,6 @@ class TagsComposer
      */
     public function compose(View $view)
     {
-        $view->with('tags', Tag::query()->orderBy('order')->pluck('name', 'id'));
+        $view->with('tags', Tag::query()->orderBy('order')->pluck('name', 'slug'));
     }
 }

@@ -16,6 +16,6 @@ class HotsComposer
      */
     public function compose(View $view)
     {
-        $view->with('hots', Article::query()->orderByDesc('views')->select(['id', 'title'])->get());
+        $view->with('hots', Article::query()->orderByDesc('views')->select(['slug', 'title'])->get());
     }
 }

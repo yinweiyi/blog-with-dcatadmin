@@ -10,14 +10,14 @@
         <div class="col-md-8">
             <div id="article" class="well"> 当前位置：
                 <a href="{{ route('home.index') }}" title="{{ $config['title'] ?? '' }}">博客首页</a>&gt;&gt;
-                <a href="{{ route('home.index_category', ['category' => $article->category_id]) }}">{{ $article->category->name }}</a>
+                <a href="{{ route('home.index_category', ['category' => $article->category->slug]) }}">{{ $article->category->name }}</a>
                 &gt;&gt; 阅读正文
                 <h2 class="blog-post-title">
                     {{ $article->title }}
                 </h2>
                 <p class="info"><span class="meat_span">作者: {{ $config['author'] ?? '' }}</span>
                     <span class="meat_span">分类:
-                        <a href="{{ route('home.index_category', ['category' => $article->category_id]) }}"
+                        <a href="{{ route('home.index_category', ['category' => $article->category->slug]) }}"
                            rel="category tag">{{ $article->category->name }}</a>
                     </span> <span class="meat_span">发布于: {{ $article->created_at }}</span>
                     <span class="meat_span">浏览：{{ number_format($article->views) }}</span>
@@ -41,12 +41,12 @@
             <ul class="pager post-pager">
                 @if(!is_null($last))
                     <li class="previous">
-                        <a href="{{ route('article.show',['id' => $last->id]) }}" rel="prev">上一篇</a>
+                        <a href="{{ route('article.show',['slug' => $last->slug]) }}" rel="prev">上一篇</a>
                     </li>
                 @endif
                 @if(!is_null($next))
                     <li class="next">
-                        <a href="{{ route('article.show', ['id' => $next->id]) }}" rel="next">下一篇</a>
+                        <a href="{{ route('article.show', ['slug' => $next->slug]) }}" rel="next">下一篇</a>
                     </li>
                 @endif
             </ul>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Guestbook;
 use App\Models\Tag;
 use App\Services\CommentService;
@@ -20,28 +21,30 @@ class HomeController extends Controller
         $articles = Article::query()
             ->where('is_show', 1)
             ->with(['tags' => function ($query) {
-                $query->select(['id', 'name']);
+                $query->select(['id', 'slug', 'name']);
             }])
             ->orderByDesc('is_top')
             ->orderByDesc('id')
-            ->paginate(10, ['id', 'title', 'author', 'html', 'views', 'created_at']);
+            ->paginate(10, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
         return view('home.index', compact('articles'));
     }
 
     /**
-     * @param $id
+     * @param $slug
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function category($id)
+    public function category($slug)
     {
         $articles = Article::query()
             ->with(['tags' => function ($query) {
-                $query->select(['id', 'name']);
+                $query->select(['id', 'slug', 'name']);
             }])
-            ->where('category_id', $id)
+            ->whereHas('category', function ($query) use ($slug) {
+                return $query->where('slug', $slug);
+            })
             ->orderByDesc('is_top')
             ->orderByDesc('id')
-            ->paginate(10, ['id', 'title', 'author', 'html', 'views', 'created_at']);
+            ->paginate(10, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
         return view('home.index', compact('articles'));
     }
 
@@ -53,11 +56,11 @@ class HomeController extends Controller
     {
         $articles = $tag->articles()
             ->with(['tags' => function ($query) {
-                $query->select(['id', 'name']);
+                $query->select(['id', 'slug', 'name']);
             }])
             ->orderByDesc('is_top')
             ->orderByDesc('id')
-            ->paginate(10, ['id', 'title', 'author', 'html', 'views', 'created_at']);
+            ->paginate(10, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
         return view('home.index', compact('articles'));
     }
 
