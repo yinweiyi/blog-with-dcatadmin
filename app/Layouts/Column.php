@@ -37,6 +37,8 @@ class Column
     }
 
     /**
+     * 设置宽度
+     *
      * @param int $width
      * @return $this
      */
@@ -47,6 +49,8 @@ class Column
     }
 
     /**
+     * 设置类名
+     *
      * @param string|array $class
      * @return $this
      */
@@ -61,6 +65,8 @@ class Column
     }
 
     /**
+     * 添加label标签
+     *
      * @param $content
      * @param string $class
      * @return $this
@@ -72,6 +78,8 @@ class Column
     }
 
     /**
+     * 获取内容
+     *
      * @return string
      */
     public function content()
@@ -80,6 +88,8 @@ class Column
     }
 
     /**
+     * 获取列属性
+     *
      * @return string
      */
     public function attributes()

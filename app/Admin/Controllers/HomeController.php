@@ -63,7 +63,6 @@ class HomeController extends Controller
                 ...$this->pathsInfo($dirs)
             ];
 
-
             return new Table($frameworks);
 
         });

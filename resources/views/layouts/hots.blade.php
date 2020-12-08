@@ -6,7 +6,7 @@
                 <li class="list-group-item">
                     <a href="{{ route('article.show',['slug' => $hot->slug]) }}" rel="bookmark"
                        title="详细阅读 {{ $hot->title }}">
-                        {{ $hot->title }}
+                        {{ \Illuminate\Support\Str::limit($hot->title, 45) }}
                     </a>
                 </li>
             @endforeach
