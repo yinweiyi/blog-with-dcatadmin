@@ -28,15 +28,15 @@
                 <div class="text">
                     {!! $article->html !!}
                 </div>
-                <div class="alert alert-success"> &nbsp; &nbsp; &nbsp; &nbsp;
-                    <div class="post-copyright">
-                        <p>本文采用
-                            <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/cn/">
-                                知识共享署名-非商业性使用 3.0 中国大陆许可协议
-                            </a>进行许可，转载时请注明出处及相应链接。
-                        </p>
-                        <p>本文永久链接: {{ request()->fullUrl() }}</p></div>
-                </div>
+{{--                <div class="alert alert-success"> &nbsp; &nbsp; &nbsp; &nbsp;--}}
+{{--                    <div class="post-copyright">--}}
+{{--                        <p>本文采用--}}
+{{--                            <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/cn/">--}}
+{{--                                知识共享署名-非商业性使用 3.0 中国大陆许可协议--}}
+{{--                            </a>进行许可，转载时请注明出处及相应链接。--}}
+{{--                        </p>--}}
+{{--                        <p>本文永久链接: {{ request()->fullUrl() }}</p></div>--}}
+{{--                </div>--}}
             </div>
             <ul class="pager post-pager">
                 @if(!is_null($last))
