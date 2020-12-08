@@ -78,7 +78,7 @@ class ArticleController extends AdminController
 
             $form->radio('content_type')
                 ->when(1, function (Form $form) {
-                    $form->markdown('markdown');
+                    $form->markdown('markdown')->height(800);
                 })
                 ->when(2, function (Form $form) {
                     $form->editor('html');
