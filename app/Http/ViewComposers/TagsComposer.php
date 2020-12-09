@@ -16,6 +16,6 @@ class TagsComposer
      */
     public function compose(View $view)
     {
-        $view->with('tags', Tag::query()->pluck('name', 'slug')->shuffle());
+        $view->with('tags', Tag::query()->pluck('name', 'slug')->shuffleWithKey());
     }
 }

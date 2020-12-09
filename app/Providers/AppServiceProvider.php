@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
@@ -37,5 +39,17 @@ class AppServiceProvider extends ServiceProvider
                 \Log::info(Str::replaceArray('?', $query->bindings, $query->sql) . ' Times: ' . $query->time . 'ms' . ' Path: ' . $request->path());
             });
         }
+
+        //打乱集合，保留key
+        Collection::macro('shuffleWithKey', function ($seed = null) {
+            $items = $this->items;
+            $keys = array_keys($items);
+            $keys = Arr::shuffle($keys, $seed);
+            $news = collect();
+            foreach ($keys as $key) {
+                $news->put($key, $items[$key]);
+            }
+            return $news;
+        });
     }
 }
