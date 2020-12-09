@@ -6,7 +6,7 @@ use App\Admin\Repositories\Guestbook;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
-use Dcat\Admin\Controllers\AdminController;
+use Dcat\Admin\Http\Controllers\AdminController;
 use Illuminate\Mail\Markdown;
 
 class GuestbookController extends AdminController

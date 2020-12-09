@@ -5,8 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Repositories\About;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Show;
-use Dcat\Admin\Controllers\AdminController;
+use Dcat\Admin\Http\Controllers\AdminController;
 use Illuminate\Mail\Markdown;
 
 class AboutController extends AdminController

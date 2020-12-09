@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Controllers\AdminController;
+use Dcat\Admin\Http\Controllers\AdminController;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Auth;
 

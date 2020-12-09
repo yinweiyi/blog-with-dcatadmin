@@ -6,7 +6,7 @@ use App\Admin\Repositories\Sentence;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
-use Dcat\Admin\Controllers\AdminController;
+use Dcat\Admin\Http\Controllers\AdminController;
 
 class SentenceController extends AdminController
 {
@@ -24,10 +24,10 @@ class SentenceController extends AdminController
             $grid->column('translation');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
         });
     }
@@ -63,7 +63,7 @@ class SentenceController extends AdminController
             $form->text('author');
             $form->text('content');
             $form->text('translation');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });

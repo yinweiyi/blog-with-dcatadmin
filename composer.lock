@@ -134,7 +134,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/13a2fba081a4123d2a396fec2fa6b65a0cfd875d",
                 "reference": "13a2fba081a4123d2a396fec2fa6b65a0cfd875d",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "doctrine/dbal": "2.*",

@@ -5,17 +5,13 @@ namespace App\Admin\Forms;
 use App\Models\Comment;
 use Dcat\Admin\Widgets\Form;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class Reply extends Form
 {
     //use LazyWidget;
     /**
-     * Handle the form request.
-     *
      * @param array $input
-     *
-     * @return Response
+     * @return \Dcat\Admin\Http\JsonResponse
      */
     public function handle(array $input)
     {
@@ -35,8 +31,8 @@ class Reply extends Form
             'top_id'           => $input['top_id'] ?: $input['id'],
 
         ]);
-
-        return $comment->exists() ? $this->success('Reply Successfully.', '/comments') : $this->error('Reply Error');
+        $response = $this->response()->alert();
+        return $comment->exists() ? $response->success('Reply Successfully.')->redirect('/comments') : $response->error('Reply Error');
     }
 
     /**
