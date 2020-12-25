@@ -17,7 +17,7 @@ class ArticleController extends Controller
     public function show(CommentService $commentService, $slug)
     {
         $article = Article::query()->where('is_show', 1)
-            ->select(['id', 'slug', 'title', 'author', 'keywords', 'html', 'views', 'category_id'])
+            ->select(['id', 'slug', 'title', 'author', 'keywords', 'html', 'views', 'category_id', 'created_at'])
             ->with(['category' => function ($query) {
                 $query->select(['id', 'slug', 'name']);
             }])->withCount(['comments' => function ($query) {
