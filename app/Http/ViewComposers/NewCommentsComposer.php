@@ -16,7 +16,7 @@ class NewCommentsComposer
      */
     public function compose(View $view)
     {
-        $newComments = Comment::query()->where(['commentable_type' => 'App\Models\Guestbook', 'parent_id' => 0])->orderByDesc('id')->get();
+        $newComments = Comment::query()->where(['commentable_type' => 'App\Models\Guestbook', 'parent_id' => 0])->limit(6)->orderByDesc('id')->get();
         $view->with('newComments', $newComments);
     }
 }
