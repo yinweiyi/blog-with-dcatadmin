@@ -54,6 +54,7 @@ class AboutController extends AdminController
             $form->radio('is_enable')->options([0 => '否', 1 => '是'])->default(1);
             $form->display('created_at');
             $form->display('updated_at');
+            $form->disableViewCheck();
         })->saving(function (Form $form) {
             if ($form->content_type == 1 && $form->markdown) {
                 $html = Markdown::parse($form->markdown);

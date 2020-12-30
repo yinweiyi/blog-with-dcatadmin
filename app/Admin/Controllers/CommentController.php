@@ -105,6 +105,8 @@ class CommentController extends AdminController
             $form->switch('is_read');
             $form->display('created_at');
             $form->display('updated_at');
+
+            $form->disableViewCheck();
         });
     }
 }

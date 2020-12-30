@@ -58,6 +58,8 @@ class ConfigController extends AdminController
 
             $form->display('created_at');
             $form->display('updated_at');
+
+            $form->disableViewCheck();
         });
     }
 }

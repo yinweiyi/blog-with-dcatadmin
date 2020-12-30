@@ -55,6 +55,8 @@ class GuestbookController extends AdminController
 
             $form->display('created_at');
             $form->display('updated_at');
+
+            $form->disableViewCheck();
         })->saving(function (Form $form) {
             if ($form->content_type == 1 && $form->markdown) {
                 $html = Markdown::parse($form->markdown);
