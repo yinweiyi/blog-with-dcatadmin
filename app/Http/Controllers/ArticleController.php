@@ -30,8 +30,8 @@ class ArticleController extends Controller
 
         $article->increment('views');
 
-        $last = Article::query()->select(['slug', 'title'])->where('id', '<', $article->id)->orderByDesc('id')->first();
-        $next = Article::query()->select(['slug', 'title'])->where('id', '>', $article->id)->orderBy('id')->first();
+        $next = Article::query()->select(['slug', 'title'])->where('id', '<', $article->id)->orderByDesc('id')->first();
+        $last = Article::query()->select(['slug', 'title'])->where('id', '>', $article->id)->orderBy('id')->first();
 
         $comments = $commentService->treeFromArticle($article);
 

@@ -24,7 +24,7 @@ class HomeController extends Controller
                 $query->select(['id', 'slug', 'name']);
             }])
             ->orderByDesc('is_top')
-            ->orderByDesc('order')
+            ->orderByDesc('id')
             ->paginate(10, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
         return view('home.index', compact('articles'));
     }
@@ -43,7 +43,7 @@ class HomeController extends Controller
                 return $query->where('slug', $slug);
             })
             ->orderByDesc('is_top')
-            ->orderByDesc('order')
+            ->orderByDesc('id')
             ->paginate(10, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
         return view('home.index', compact('articles'));
     }
@@ -59,7 +59,7 @@ class HomeController extends Controller
                 $query->select(['id', 'slug', 'name']);
             }])
             ->orderByDesc('is_top')
-            ->orderByDesc('order')
+            ->orderByDesc('id')
             ->paginate(10, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
         return view('home.index', compact('articles'));
     }
