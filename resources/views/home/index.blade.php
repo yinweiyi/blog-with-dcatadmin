@@ -23,7 +23,8 @@
                     <div class="panel-footer">发布于{{ $article->created_at->format('Y-m-d') }}&nbsp;|&nbsp;
                         浏览：{{ $article->views }}&nbsp;|&nbsp;Tags：
                         @foreach($article->tags as $tag)
-                            <a href="{{ route('home.index_tag', ['tag' => $tag->slug]) }}" rel="tag">{{ $tag->name }}</a>
+                            <a href="{{ route('home.index_tag', ['tag' => $tag->slug]) }}"
+                               rel="tag">{{ $tag->name }}</a>
                         @endforeach
                     </div>
 
@@ -33,9 +34,11 @@
                     暂无博文
                 </div>
             @endforelse
-            <ul class="pagination">
-                {{ $articles->render() }}
-            </ul>
+            <div>
+                <ul class="pagination">
+                    {{ $articles->render() }}
+                </ul>
+            </div>
         </div><!-- /.blog-main -->
         <div class="col-md-4">
             @include('layouts.tags')

@@ -13,14 +13,16 @@
                 @endforelse
             </div><!-- /.blog-main -->
             @if($abouts->count())
-                @if($abouts->first()->comments_count)
-                    <div id="comments" style="height: auto !important;">
+                <div id="comments" style="height: auto !important;">
+                    @if($abouts->first()->comments_count)
                         <h3> 关于 : 目前有 {{ $abouts->first()->comments_count }} 条评论</h3>
                         @include('layouts.comments')
-                    </div>
-                @endif
-
-                @include('layouts.comment', ['id' => $abouts->first()->id, 'type' => 'about'])
+                        <div>
+                            {{ $comments->render() }}
+                        </div>
+                    @endif
+                    @include('layouts.comment', ['id' => $abouts->first()->id, 'type' => 'about'])
+                </div>
             @endif
         </div>
         <div class="col-md-4">

@@ -9,12 +9,18 @@
 
             @if($guestbook)
                 <div id="comments" style="height: auto !important;">
-                    <h3> 留言 : 目前有 {{ $guestbook->comments_count }} 条评论</h3>
-                    @include('layouts.comments')
+                    @if($guestbook->comments_count)
+                        <h3> 留言 : 目前有 {{ $guestbook->comments_count }} 条评论</h3>
+                        @include('layouts.comments')
+                        <div>
+                            {{ $comments->render() }}
+                        </div>
+                    @endif
+
+                    @if($guestbook->can_comment)
+                        @include('layouts.comment', ['id' => $guestbook->id, 'type' => 'guestbook'])
+                    @endif
                 </div>
-                @if($guestbook->can_comment)
-                    @include('layouts.comment', ['id' => $guestbook->id, 'type' => 'guestbook'])
-                @endif
             @endif
         </div>
         <div class="col-md-4">

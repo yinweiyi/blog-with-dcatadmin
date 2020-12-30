@@ -25,7 +25,7 @@ class HomeController extends Controller
             }])
             ->orderByDesc('is_top')
             ->orderByDesc('order')
-            ->paginate(10, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
+            ->paginate(1, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
         return view('home.index', compact('articles'));
     }
 
