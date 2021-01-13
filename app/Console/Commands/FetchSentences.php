@@ -34,7 +34,7 @@ class FetchSentences extends Command
     public function handle()
     {
         try {
-            $html = Http::get(self::Url);
+            $html = Http::get(url:self::Url, decode: false);
             preg_match(self::Pattern, $html, $matches);
             list($originString, $content, $translation, $author) = $matches;
             //获取最后一条数据

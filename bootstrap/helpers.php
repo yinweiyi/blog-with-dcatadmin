@@ -391,9 +391,10 @@ if (!function_exists('xml_to_array')) {
      */
     function xml_to_array($xml)
     {
-        $xml = simplexml_load_string($xml);
-        $xml = json_decode(json_encode($xml), true);
-        return $xml;
+        libxml_disable_entity_loader(true);
+
+        return json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA), JSON_UNESCAPED_UNICODE), true);
+
     }
 }
 
@@ -401,12 +402,25 @@ if (!function_exists('array_to_xml')) {
     /**
      * xml_to_array
      *
-     * @param $array
+     * @param $data
+     * @param $rootKey
      * @return mixed
      */
-    function array_to_xml($array)
+    function array_to_xml($data, $rootKey = 'xml')
     {
+        $xml = '<' . $rootKey . '>';
+        foreach ($data as $key => $val) {
+            if (is_numeric($val)) {
+                $xml .= '<' . $key . '>' . $val . '</' . $key . '>';
+            } else if (is_string($val)) {
+                $xml .= '<' . $key . '><![CDATA[' . $val . ']]></' . $key . '>';
+            } else if (is_array($val)) {
+                $xml .= array_to_xml($val, $key);
+            }
+        }
+        $xml .= '</' . $rootKey . '>';
 
+        return $xml;
     }
 }
 

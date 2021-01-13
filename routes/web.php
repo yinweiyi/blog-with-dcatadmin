@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ToolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,7 @@ Route::get('/articles/{slug}', [ArticleController::class, 'show'])->where('slug'
 Route::get('/captcha', [CaptchaController::class, 'captcha'])->name('captcha');
 
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
+
+Route::get('/tool/html-to-image', [ToolController::class, 'htmlToImage'])->name('captcha');
 
 

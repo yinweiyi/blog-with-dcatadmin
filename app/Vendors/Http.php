@@ -14,23 +14,40 @@ class Http
     protected static $client = null;
 
     /**
-     * get请求
+     *  get请求
      *
      * @param $url
      * @param array $params
      * @param array $header
      * @param int $timeout
-     * @param false $log
-     * @return string
+     * @param bool $decode
+     * @return array|string|null
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public static function get($url, $params = [], $header = [], $timeout = 10, $log = false)
+    public static function get($url, $params = [], $header = [], $timeout = 10, $decode = true)
     {
         $client = self::getClient();
         $response = $client->get($url, ['query' => $params, 'connect_timeout' => $timeout, 'headers' => $header]);
         $content = $response->getBody()->getContents();
-        $log && self::log($url, 'get', $header, $params, $content);
-        return $content;
+        return $decode ? json_decode($content, true) : $content;
+    }
+
+    /**
+     * @param $url
+     * @param array $params
+     * @param array $header
+     * @param int $timeout
+     * @param bool $decode
+     * @return mixed|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public static function postBody($url, $params = [], $header = [], $timeout = 5, $decode = true)
+    {
+        $params = is_array($params) ? \json_encode($params, JSON_UNESCAPED_UNICODE) : $params;
+        $client = self::getClient();
+        $response = $client->post($url, ['body' => $params, 'connect_timeout' => $timeout, 'headers' => $header]);
+        $content = $response->getBody()->getContents();
+        return $decode ? json_decode($content, true) : $content;
     }
 
     /**
@@ -48,18 +65,5 @@ class Http
         return self::$client;
     }
 
-    /**
-     * 第三方请求日志
-     *
-     * @param $url
-     * @param $method
-     * @param $header
-     * @param $params
-     * @param $result
-     */
-    private static function log($url, $method, $header, $params, $result)
-    {
-        Log::channel('http_client')->info(\json_encode(compact('url', 'method', 'header', 'params', 'result')));
-    }
 }
 
