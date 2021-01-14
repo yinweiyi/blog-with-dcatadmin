@@ -15,6 +15,6 @@ use App\Http\Controllers\Open\OfficialAccountController;
 */
 
 Route::namespace('Open')->group(function (){
-    Route::get('official_account/receipt', [OfficialAccountController::class, 'check']);
-    Route::post('official_account/receipt', [OfficialAccountController::class, 'receipt']);
+    Route::get('official-account/receipt', [OfficialAccountController::class, 'check']);
+    Route::post('official-account/receipt', [OfficialAccountController::class, 'receipt']);
 });
