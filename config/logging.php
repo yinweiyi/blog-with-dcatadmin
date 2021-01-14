@@ -54,6 +54,13 @@ return [
             'days' => 14,
         ],
 
+        //公众号
+        'official_account' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/official_account.log'),
+            'level' => 'debug',
+        ],
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
