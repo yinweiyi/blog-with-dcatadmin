@@ -31,6 +31,6 @@ Route::get('/captcha', [CaptchaController::class, 'captcha'])->name('captcha');
 
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
 
-Route::get('/tool/html-to-image', [ToolController::class, 'htmlToImage'])->name('captcha');
+Route::get('/tool/html-to-image', [ToolController::class, 'htmlToImage'])->name('tool.html_to_image');
 
 

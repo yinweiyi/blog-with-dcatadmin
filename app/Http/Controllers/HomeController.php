@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Article;
-use App\Models\Category;
 use App\Models\Guestbook;
 use App\Models\Tag;
 use App\Services\CommentService;
