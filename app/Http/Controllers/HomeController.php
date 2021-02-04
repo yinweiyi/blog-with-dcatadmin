@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
@@ -24,7 +24,7 @@ class HomeController extends Controller
             }])
             ->orderByRaw('is_top desc, id desc')
             ->paginate(7, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
-        return view('home.index', compact('articles'));
+        return i_view('home.index', compact('articles'));
     }
 
     /**
@@ -42,7 +42,7 @@ class HomeController extends Controller
             })
             ->orderByRaw('is_top desc, id desc')
             ->paginate(7, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
-        return view('home.index', compact('articles'));
+        return i_view('home.index', compact('articles'));
     }
 
     /**
@@ -57,7 +57,7 @@ class HomeController extends Controller
             }])
             ->orderByRaw('is_top desc, id desc')
             ->paginate(7, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
-        return view('home.index', compact('articles'));
+        return i_view('home.index', compact('articles'));
     }
 
 
@@ -78,7 +78,7 @@ class HomeController extends Controller
         }
 
 
-        return view('home.about', compact('abouts', 'comments'));
+        return i_view('home.about', compact('abouts', 'comments'));
     }
 
     /**
@@ -95,6 +95,6 @@ class HomeController extends Controller
         if (!is_null($guestbook)) {
             $comments = $commentService->treeFromArticle($guestbook);
         }
-        return view('home.guestbook', compact('guestbook', 'comments'));
+        return i_view('home.guestbook', compact('guestbook', 'comments'));
     }
 }

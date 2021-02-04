@@ -35,6 +35,6 @@ class ArticleController extends Controller
 
         $comments = $commentService->treeFromArticle($article);
 
-        return view('article.show', compact('article', 'last', 'next', 'comments'));
+        return i_view('article.show', compact('article', 'last', 'next', 'comments'));
     }
 }

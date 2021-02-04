@@ -424,25 +424,6 @@ if (!function_exists('array_to_xml')) {
     }
 }
 
-if (!function_exists('i_view')) {
-    /**
-     * @param $blade
-     * @param array $data
-     * @param string $fileName
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    function i_view($blade, $data = [], $fileName = 'index.html')
-    {
-        $html = view($blade, $data);
-
-        $filePath = storage_path('framework/htmls/' . $fileName);
-
-        write_file($filePath, $html);
-
-        return $html;
-    }
-}
-
 if (!function_exists('write_file')) {
     /**
      * 文件写稿
@@ -518,7 +499,7 @@ if (!function_exists('unlimited_for_layer')) {
 
 if (!function_exists('app_url')) {
     /**
-     * OPEN
+     * APP
      *
      * @param $url
      * @return string
@@ -526,5 +507,40 @@ if (!function_exists('app_url')) {
     function app_url($url = '/')
     {
         return $url == '/' ? config('app.url') : config('app.url') . '/' . $url;
+    }
+}
+if (!function_exists('mini_html')) {
+    /**
+     * mini_html
+     *
+     * @param $value
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    function mini_html($value)
+    {
+        $replace = array(
+            '/<!--[^\[](.*?)[^\]]-->/s' => '',
+            "/\n([\S])/"                => ' $1',
+            "/\r/"                      => '',
+            "/\n/"                      => '',
+            "/\t/"                      => ' ',
+            "/ +/"                      => ' ',
+        );
+        return preg_replace(array_keys($replace), array_values($replace), $value);
+    }
+}
+
+
+if (!function_exists('i_view')) {
+    /**
+     * @param null $view
+     * @param array $data
+     * @param array $mergeData
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    function i_view($view = null, $data = [], $mergeData = [])
+    {
+        $view = view($view, $data, $mergeData);
+        return mini_html($view);
     }
 }
