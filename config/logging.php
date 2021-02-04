@@ -54,6 +54,13 @@ return [
             'days' => 14,
         ],
 
+        //baidu_push
+        'baidu_push' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/baidu_push.log'),
+            'level' => 'debug',
+        ],
+
         //公众号
         'official_account' => [
             'driver' => 'single',

@@ -516,3 +516,15 @@ if (!function_exists('unlimited_for_layer')) {
     }
 }
 
+if (!function_exists('app_url')) {
+    /**
+     * OPEN
+     *
+     * @param $url
+     * @return string
+     */
+    function app_url($url = '/')
+    {
+        return $url == '/' ? config('app.url') : config('app.url') . '/' . $url;
+    }
+}
