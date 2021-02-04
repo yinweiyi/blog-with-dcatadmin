@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-    <meta name="baidu-site-verification" content="BHraSigcd3">
+    <meta name="baidu-site-verification" content="code-dn39zmbxqg" />
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="{{ $configs['author'] ?? '' }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
