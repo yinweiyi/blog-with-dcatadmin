@@ -9,7 +9,7 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="{{ $configs['author'] ?? '' }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', $configs['title'] ?? '') | 技术博客</title>
+    <title>@yield('title', $configs['title'] ?? '') | {{$configs['sub_title'] ?? ''}}</title>
     <meta name="keywords" content="{{ $configs['keywords'] ?? '' }},@yield('keywords', '')">
     <meta name="description" content="{{ $configs['description'] ?? '' }}">
     <link href="{{ asset('css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
