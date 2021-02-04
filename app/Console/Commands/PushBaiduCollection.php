@@ -34,7 +34,7 @@ class PushBaiduCollection extends Command
     public function handle()
     {
         $urls = $this->urls();
-        Log::channel('baidu_push')->info('pushing urls to baidu:' . $this->urls()->toJson());
+        Log::channel('baidu_push')->info('pushing urls to baidu:' . $this->urls()->implode(','));
         $api = 'http://data.zz.baidu.com/urls?site=https://www.ewayee.com&token=Z9NOHrweW8GamIfh';
         $ch = curl_init();
         $options = array(
