@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('fetch:sentence')->everyFifteenMinutes()->between('7:00', '8:00');;
-        $schedule->command('push:baidu_collection')->hourly();
+        $schedule->command('push:baidu_collection')->everyThirtyMinutes();
     }
 
     /**
