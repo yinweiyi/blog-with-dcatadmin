@@ -33,14 +33,15 @@ class PushBaiduCollection extends Command
      */
     public function handle()
     {
-        Log::channel('baidu_push')->info('pushing urls to baidu~~');
+        $urls = $this->urls();
+        Log::channel('baidu_push')->info('pushing urls to baidu:' . $this->urls()->toJson());
         $api = 'http://data.zz.baidu.com/urls?site=https://www.ewayee.com&token=Z9NOHrweW8GamIfh';
         $ch = curl_init();
         $options = array(
             CURLOPT_URL            => $api,
             CURLOPT_POST           => true,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POSTFIELDS     => $this->urls()->implode("\n"),
+            CURLOPT_POSTFIELDS     => $urls->implode("\n"),
             CURLOPT_HTTPHEADER     => array('Content-Type: text/plain'),
         );
         curl_setopt_array($ch, $options);
