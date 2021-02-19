@@ -529,6 +529,7 @@ if (!function_exists('mini_html')) {
             "/\r/"                      => '',
             "/\n/"                      => '',
             "/\t/"                      => ' ',
+            "/ +/"                      => ' ',
         );
         return preg_replace(array_keys($replace), array_values($replace), $value);
     }
