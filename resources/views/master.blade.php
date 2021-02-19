@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-    <meta name="baidu-site-verification" content="code-dn39zmbxqg" />
+    <meta name="baidu-site-verification" content="code-dn39zmbxqg"/>
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="{{ $configs['author'] ?? '' }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -23,7 +23,16 @@
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
-{{--    <script data-ad-client="ca-pub-6811262025296014" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>--}}
+    {{--    <script data-ad-client="ca-pub-6811262025296014" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>--}}
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?de207403b7a735be3a83341ba1134867";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 @include('layouts.nav')
