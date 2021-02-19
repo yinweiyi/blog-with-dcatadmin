@@ -518,6 +518,11 @@ if (!function_exists('mini_html')) {
      */
     function mini_html($value)
     {
+        $value = preg_replace_callback('/<pre>([\S\s]*?)<\/pre>/', function ($matches) {
+            $match = $matches[0];
+            return  str_replace(["\r\n", "\r", "\n"], '<br />', $match);
+        }, (string)$value);
+
         $replace = array(
             '/<!--[^\[](.*?)[^\]]-->/s' => '',
             "/\n([\S])/"                => ' $1',
