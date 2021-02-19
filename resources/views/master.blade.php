@@ -26,7 +26,7 @@
     {{--    <script data-ad-client="ca-pub-6811262025296014" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>--}}
     <script>
         var _hmt = _hmt || [];
-        (function () {
+        (function() {
             var hm = document.createElement("script");
             hm.src = "https://hm.baidu.com/hm.js?de207403b7a735be3a83341ba1134867";
             var s = document.getElementsByTagName("script")[0];
