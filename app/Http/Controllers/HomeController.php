@@ -24,7 +24,7 @@ class HomeController extends Controller
             }])
             ->orderByRaw('is_top desc, id desc')
             ->paginate(7, ['id', 'title','slug', 'author', 'html', 'views', 'created_at']);
-        return i_view('home.index', compact('articles'));
+        return view('home.index', compact('articles'));
     }
 
     /**
