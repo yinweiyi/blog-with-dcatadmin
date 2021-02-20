@@ -2,10 +2,11 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Renderable\CommentTable;
 use App\Admin\Repositories\Guestbook;
+use App\Models\Comment;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Illuminate\Mail\Markdown;
 
@@ -24,6 +25,9 @@ class GuestbookController extends AdminController
                 return strip_tags($html);
             })->substr(0, 60);
             $grid->column('can_comment')->switch();
+            $grid->column('comments', '评论列表')->display('评论列表')->modal('评论列表', function () {
+                return CommentTable::make(['commentable_id' => $this->id, 'commentable_type' => Comment::Types['guestbook']]);
+            });
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
             $grid->disableViewButton();

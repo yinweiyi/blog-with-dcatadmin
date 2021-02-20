@@ -3,12 +3,14 @@
 namespace App\Admin\Forms;
 
 use App\Models\Comment;
+use Dcat\Admin\Contracts\LazyRenderable;
+use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Illuminate\Support\Facades\Auth;
 
-class Reply extends Form
+class Reply extends Form implements LazyRenderable
 {
-    //use LazyWidget;
+    use LazyWidget;
     /**
      * @param array $input
      * @return \Dcat\Admin\Http\JsonResponse
@@ -59,6 +61,6 @@ class Reply extends Form
      */
     public function default()
     {
-        return $this->data()->toArray();
+        return $this->payload;
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Renderable\CommentTable;
 use App\Admin\Repositories\About;
+use App\Models\Comment;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -22,6 +24,9 @@ class AboutController extends AdminController
             $grid->column('title');
             $grid->column('order');
             $grid->column('is_enable')->switch();
+            $grid->column('comments', '评论列表')->display('评论列表')->modal('评论列表', function () {
+                return CommentTable::make(['commentable_id' => $this->id, 'commentable_type' => Comment::Types['about']]);
+            });
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
             $grid->disableViewButton();

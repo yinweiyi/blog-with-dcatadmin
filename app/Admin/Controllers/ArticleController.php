@@ -2,14 +2,17 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Renderable\CommentTable;
 use App\Admin\Repositories\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Tag;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ArticleController extends AdminController
 {
@@ -23,19 +26,25 @@ class ArticleController extends AdminController
         return Grid::make(new Article(['tags', 'category']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('title')->display(function ($title) {
-                return sprintf('<a href="%s" target="_blank">%s</a>', route('article.show', ['slug' => $this->slug]), $title);
+                return sprintf('<a href="%s" target="_blank" title="%s">%s</a>', route('article.show', ['slug' => $this->slug]), $title, Str::limit($title, 30));
             });
-            $grid->column('slug');
+            $grid->column('slug')->label();
             $grid->column('author');
             $grid->column('keywords');
             $grid->column('order')->sortable();
             $grid->column('views');
-            $grid->column('category.name', trans('category.fields.name'));
+            $grid->column('category.name', trans('category.fields.name'))->label();
             $grid->column('tags')->pluck('name')->label('primary', 3);
             $grid->column('is_top')->switch();
             $grid->column('is_show')->switch();
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+
+            $grid->column('comments', '评论列表')->display('评论列表')->modal('评论列表', function () {
+                return CommentTable::make(['commentable_id' => $this->id, 'commentable_type' => Comment::Types['article']]);
+            });
+            $grid->column('time', '时间')->display(function () {
+                return sprintf('更新时间：%s <br />创建时间：%s', $this->created_at, $this->updated_at);
+            });
+            //$grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');

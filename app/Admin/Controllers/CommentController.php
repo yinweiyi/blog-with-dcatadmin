@@ -36,7 +36,7 @@ class CommentController extends AdminController
             $grid->column('created_at');
 
             $grid->reply->display('回复')->modal('回复', function () {
-                return Reply::make($this->toArray());
+                return Reply::make()->payload($this->toArray());
             });
 
             $grid->filter(function (Grid\Filter $filter) {
