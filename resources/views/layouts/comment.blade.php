@@ -142,7 +142,7 @@
                 let messagePanel = $('#ajax-post-msg');
                 type = type || 'primary';
                 timeout = timeout || 2000;
-                messagePanel.show().addClass('text-' + type).html(message)
+                messagePanel.show().addClass('text-' + type).html(message);
                 this.timer = setTimeout(function () {
                     if (callback) {
                         callback.call();
