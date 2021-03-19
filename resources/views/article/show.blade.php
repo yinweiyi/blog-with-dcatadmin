@@ -33,7 +33,7 @@
                         <p>
                             转载时请注明出处及相应链接。
                         </p>
-                        <p>本文永久链接: {{ request()->fullUrl() }}</p>
+                        <p>本文永久链接: {{ request()->url() }}</p>
                     </div>
                 </div>
             </div>
