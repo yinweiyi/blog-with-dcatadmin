@@ -9,6 +9,7 @@ use App\Http\ViewComposers\HotsComposer;
 use App\Http\ViewComposers\NewCommentsComposer;
 use App\Http\ViewComposers\SentenceComposer;
 use App\Http\ViewComposers\TagsComposer;
+use App\Http\ViewComposers\VisitComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -22,7 +23,8 @@ class ViewServiceProvider extends ServiceProvider
         HotsComposer::class            => 'layouts.hots',
         FriendshipLinksComposer::class => 'layouts.friendship_links',
         NewCommentsComposer::class     => 'layouts.newest_comments',
-        SentenceComposer::class        => 'home.index'
+        SentenceComposer::class        => 'home.index',
+        VisitComposer::class           => 'layouts.footer',
     ];
 
     /**

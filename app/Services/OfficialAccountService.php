@@ -8,20 +8,20 @@ use App\Vendors\Http;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
-use App\Vendors\Redis\Wechat;
+use App\Vendors\Redis\GetSet;
 
 class OfficialAccountService
 {
     protected $config;
 
     /**
-     * @var Wechat
+     * @var GetSet
      */
     protected $cache;
 
     public function __construct()
     {
-        $this->cache = new Wechat();
+        $this->cache = new GetSet();
         $this->config = Config::get('wechat.official_account');
     }
 

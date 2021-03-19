@@ -4,13 +4,13 @@
 namespace App\Vendors\Redis;
 
 
-class Wechat extends Base
+class GetSet extends Base
 {
 
     /**
      * @var string 空间
      */
-    protected $namespace = 'wechat';
+    protected $namespace = '';
 
     /**
      * @param $key
@@ -18,7 +18,7 @@ class Wechat extends Base
      * @param $expired
      * @return int
      */
-    public function set($key, $value, $expired = 3600)
+    public function set($key, $value, $expired = null)
     {
         $key = $this->getKey($key);
         if ($expired) {
