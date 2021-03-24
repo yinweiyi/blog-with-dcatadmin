@@ -509,6 +509,24 @@ if (!function_exists('app_url')) {
         return $url == '/' ? config('app.url') : config('app.url') . '/' . $url;
     }
 }
+
+if (!function_exists('find_number')) {
+    /**
+     * find number from str
+     *
+     * @param $str
+     * @param int $min_len
+     * @param int $max_len
+     * @return string
+     */
+    function find_number($str = '/', $min_len = 5, $max_len = 100)
+    {
+        $pattern = sprintf('/\d{%d,%d}/', $min_len, $max_len);
+        preg_match($pattern, $str, $matches);
+        return $matches[0] ?? '';
+    }
+}
+
 if (!function_exists('mini_html')) {
     /**
      * mini_html
@@ -520,7 +538,7 @@ if (!function_exists('mini_html')) {
     {
         $value = preg_replace_callback('/<pre>([\S\s]*?)<\/pre>/', function ($matches) {
             $match = $matches[0];
-            return  str_replace(["\r\n", "\r", "\n"], '<br />', $match);
+            return str_replace(["\r\n", "\r", "\n"], '<br />', $match);
         }, (string)$value);
 
         $replace = array(
