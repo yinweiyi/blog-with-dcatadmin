@@ -10,11 +10,11 @@
         访问： {{ $visitCount }} 次
         <a href="{{ route('home.index') }}">{{ $configs['title'] ?? '' }}</a>
         <a href="https://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">{{ $configs['icp'] ?? '' }}</a>
+
         @if($configs['beian'])
-            <img src="{{ asset('images/beian.png') }}"/>
+            <img style="display: inline-block; margin-left: 5px" src="{{ asset('images/beian.png') }}"/>
             <a target="_blank"
-               href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode={{ find_number($configs['beian']) }}"
-               style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+               href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode={{ find_number($configs['beian']) }}">
                 {{ $configs['beian'] }}
             </a>
         @endif
