@@ -23,6 +23,7 @@ class ConfigController extends AdminController
             $grid->column('sub_title');
             $grid->column('keywords');
             $grid->column('icp');
+            $grid->column('beian');
             $grid->column('author');
             //$grid->column('description');
             $grid->column('created_at');
@@ -53,6 +54,7 @@ class ConfigController extends AdminController
             $form->text('sub_title');
             $form->text('keywords');
             $form->text('icp');
+            $form->text('beian');
             $form->text('author');
             $form->text('description');
 
