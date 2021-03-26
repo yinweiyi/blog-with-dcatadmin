@@ -119,7 +119,7 @@
                         that.showMessage(result.message, 'primary', 2000, function () {
                             if (window.localStorage) {
                                 window.localStorage.setItem('nickname', data.nickname);
-                                window.localStorage.setItem('email', data.email)
+                                email && window.localStorage.setItem('email', data.email)
 
                             }
                             location.href = that.getCommentPosition(result.data.comment_id);
