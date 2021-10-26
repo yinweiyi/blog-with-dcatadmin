@@ -2,5 +2,5 @@
 
 @task('deploy', ['on' => 'web'])
 cd /www/blog/
-git pull
+sudo git pull
 @endtask
